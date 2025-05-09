@@ -27,6 +27,7 @@ namespace TemplateTPCorto
             LoginNegocio loginNegocio = new LoginNegocio();
             Credencial credencial = loginNegocio.login(usuario, password);
 
+            MessageBox.Show("Bienvenido " + credencial.FechaAlta);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Persistencia.DataBase
 {
     public class DataBaseUtils
     {
-        string archivoCsv = @"C:\Users\p044755\source\repos\TemplateTPIntegrador\TemplateTPCorto\Persistencia\DataBase\Tablas\";
+        string archivoCsv = @"S:\Facultad 2025\TP CAI\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas\";
         public List<String> BuscarRegistro(String nombreArchivo)
         {
             archivoCsv = archivoCsv + nombreArchivo; // Cambia esta ruta al archivo CSV que deseas leer
@@ -79,8 +79,8 @@ namespace Persistencia.DataBase
         // Método para agregar un registro
         public void AgregarRegistro(string nombreArchivo, string nuevoRegistro)
         {
-            string archivoCsv = Path.Combine(Directory.GetCurrentDirectory(), "Persistencia", "Datos", nombreArchivo);
-
+            //string archivoCsv = Path.Combine(Directory.GetCurrentDirectory(), "Persistencia", "Datos", nombreArchivo);
+            string archivoCsv = @"S:\Facultad 2025\TP CAI\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas\" + nombreArchivo; // Cambia esta ruta al archivo CSV que deseas leer
             try
             {
                 // Verificar si el archivo existe
