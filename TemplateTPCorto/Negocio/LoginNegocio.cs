@@ -84,9 +84,17 @@ namespace Negocio
             if (ContarIntentosFallidos(legajo) >= 3)
             {
                 DataBaseUtils dataBaseUtils = new DataBaseUtils();
-                dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo);
+                dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo + "\n");
 
             }
+        }
+        public bool ValidarContraseniaExpirada(DateTime FechaUltimoLogin)
+        {
+            if(FechaUltimoLogin.AddDays(30)>DateTime.Now)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
