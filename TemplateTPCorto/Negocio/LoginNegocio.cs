@@ -58,7 +58,7 @@ namespace Negocio
 
             usuarioPersistencia.anotarIntentoFallido(legajo_usuario);
 
-            
+            ValidarBloqueoUsuario(legajo_usuario);
             return null;
         }
         public int ContarIntentosFallidos(string legajo)
@@ -79,7 +79,7 @@ namespace Negocio
             return contador;
         }
 
-        public void BloquearUsuario(string legajo)
+        public void ValidarBloqueoUsuario(string legajo)
         {
             if (ContarIntentosFallidos(legajo) >= 3)
             {
