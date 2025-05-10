@@ -1,8 +1,10 @@
 ﻿using Datos;
 using Persistencia;
+using Persistencia.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,7 +58,35 @@ namespace Negocio
 
             usuarioPersistencia.anotarIntentoFallido(legajo_usuario);
 
+            
             return null;
+        }
+        public int ContarIntentosFallidos(string legajo)
+
+
+        {
+            int contador = 0;
+            DataBaseUtils dataBaseUtils = new DataBaseUtils();
+            List<String> intentos = dataBaseUtils.BuscarRegistro("login_intentos.csv");
+            for (int i = 0; i < intentos.Count; i++)
+            {
+                string[] datos = intentos[i].Split(';');
+                if(legajo.Equals(datos[0]))
+                {
+                    contador++;
+                }
+            }
+            return contador;
+        }
+
+        public void BloquearUsuario(string legajo)
+        {
+            if (ContarIntentosFallidos(legajo) >= 3)
+            {
+                DataBaseUtils dataBaseUtils = new DataBaseUtils();
+                dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo);
+
+            }
         }
     }
 }

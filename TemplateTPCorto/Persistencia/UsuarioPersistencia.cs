@@ -69,5 +69,7 @@ namespace Persistencia
             dataBaseUtils.AgregarRegistro(archivo, linea);
 
         }
+
+
     }
 }
