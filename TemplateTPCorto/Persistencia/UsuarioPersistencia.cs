@@ -30,31 +30,20 @@ namespace Persistencia
                 }
                 
             }
-
             return null;
 
         }
 
-
-        //Este metodo valida si el usuario esta bloqueado. Devuelve true si el usuario esta bloqueado
-        public bool usuarioEstaBloqueado(String legajo)
+        //Este metodo devuelve la lista de legajos bloqueados.
+        public List <string> obtenerLegajosBloqueados()
         {
             DataBaseUtils dataBaseUtils = new DataBaseUtils();
             List<String> usuarios = dataBaseUtils.BuscarRegistro("usuario_bloqueado.csv");
 
-            foreach(String usuario in usuarios)
-            {
-                if(usuario.Equals(legajo))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return usuarios;
         }
 
-
-        //Este metodo anota un intento fallido de login.
+    //Este metodo anota un intento fallido de login.
         public void anotarIntentoFallido(String legajo)
         {
             DataBaseUtils dataBaseUtils = new DataBaseUtils();
@@ -69,7 +58,41 @@ namespace Persistencia
             dataBaseUtils.AgregarRegistro(archivo, linea);
 
         }
+        public void BorrarIntentosFallidos(string legajo)
+        {
+            DataBaseUtils dataBaseUtils = new DataBaseUtils();
+            dataBaseUtils.BorrarRegistro(legajo, "login_intentos.csv");
+        }
 
+        public int ContarIntentosFallidos(string legajo)
 
+        {
+            int contador = 0;
+            DataBaseUtils dataBaseUtils = new DataBaseUtils();
+            List<String> intentos = dataBaseUtils.BuscarRegistro("login_intentos.csv");
+            for (int i = 0; i < intentos.Count; i++)
+            {
+                string[] datos = intentos[i].Split(';');
+                if (legajo.Equals(datos[0]))
+                {
+                    contador++;
+                }
+            }
+            return contador;
+        }
+        public void ValidarBloqueoUsuario(string legajo)
+        {
+            if (ContarIntentosFallidos(legajo) >= 3)
+            {
+                BloquearUsuario(legajo);
+
+            }
+        }
+        public void BloquearUsuario(string legajo)
+        {
+            DataBaseUtils dataBaseUtils = new DataBaseUtils();
+            dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo + "\n");
+        }
+       
     }
 }
