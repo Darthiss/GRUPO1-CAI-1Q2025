@@ -34,5 +34,10 @@ namespace Datos
 
         }
 
+        public override string ToString()
+        {
+            return $"{_legajo};{_nombreUsuario};{_contrasena};{_fechaAlta:dd/M/yyyy};{_fechaUltimoLogin:dd/M/yyyy}";
+        }
+
     }
 }

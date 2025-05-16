@@ -96,6 +96,16 @@ namespace Persistencia
         {
             dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo + "\n");
         }
-       
+
+        public void CambiarContraseña(string usuario, string contraseñaNueva)
+        {
+            Credencial credencial = login(usuario);
+            string legajo = credencial.Legajo;
+            credencial.Contrasena = contraseñaNueva;
+
+            dataBaseUtils.BorrarRegistro(legajo, "credenciales.csv");
+
+
+        }
     }
 }
