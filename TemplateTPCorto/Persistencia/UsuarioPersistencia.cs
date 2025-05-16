@@ -13,9 +13,17 @@ namespace Persistencia
 
     public class UsuarioPersistencia
     {
+
+        private readonly DataBaseUtils dataBaseUtils;
+
+        public UsuarioPersistencia()
+        {
+            this.dataBaseUtils = new DataBaseUtils();
+        }
+
+
         public Credencial login(String username)
         {
-            DataBaseUtils dataBaseUtils = new DataBaseUtils();
             List<String> registros = dataBaseUtils.BuscarRegistro("credenciales.csv");
 
             foreach (String linea in registros)
@@ -37,7 +45,6 @@ namespace Persistencia
         //Este metodo devuelve la lista de legajos bloqueados.
         public List <string> obtenerLegajosBloqueados()
         {
-            DataBaseUtils dataBaseUtils = new DataBaseUtils();
             List<String> usuarios = dataBaseUtils.BuscarRegistro("usuario_bloqueado.csv");
 
             return usuarios;
@@ -46,7 +53,6 @@ namespace Persistencia
     //Este metodo anota un intento fallido de login.
         public void anotarIntentoFallido(String legajo)
         {
-            DataBaseUtils dataBaseUtils = new DataBaseUtils();
             String linea = "";
             String archivo = "login_intentos.csv";
 
@@ -60,7 +66,6 @@ namespace Persistencia
         }
         public void BorrarIntentosFallidos(string legajo)
         {
-            DataBaseUtils dataBaseUtils = new DataBaseUtils();
             dataBaseUtils.BorrarRegistro(legajo, "login_intentos.csv");
         }
 
@@ -68,7 +73,6 @@ namespace Persistencia
 
         {
             int contador = 0;
-            DataBaseUtils dataBaseUtils = new DataBaseUtils();
             List<String> intentos = dataBaseUtils.BuscarRegistro("login_intentos.csv");
             for (int i = 0; i < intentos.Count; i++)
             {
@@ -90,7 +94,6 @@ namespace Persistencia
         }
         public void BloquearUsuario(string legajo)
         {
-            DataBaseUtils dataBaseUtils = new DataBaseUtils();
             dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo + "\n");
         }
        

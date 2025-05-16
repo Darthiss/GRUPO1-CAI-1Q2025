@@ -23,8 +23,6 @@ namespace Negocio
         {
             ResultadoLogin resultado = new ResultadoLogin();
 
-            UsuarioPersistencia usuarioPersistencia = new UsuarioPersistencia();
-
             Credencial credencial = usuarioPersistencia.login(usuario);
             resultado.Credencial = credencial;
             if (credencial == null)
