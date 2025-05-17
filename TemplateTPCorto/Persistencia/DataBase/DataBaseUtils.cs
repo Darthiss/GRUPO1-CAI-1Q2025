@@ -12,6 +12,7 @@ namespace Persistencia.DataBase
 
         private readonly string rutaBase = @"S:\Facultad 2025\TP CAI\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas\";
 
+        //Devuelve TODOS los registros de una tabla...
         public List<String> BuscarRegistro(String nombreArchivo)
         {
             string rutaArchivo = Path.Combine(rutaBase, nombreArchivo); // Cambia esta ruta al archivo CSV que deseas leer
@@ -37,7 +38,7 @@ namespace Persistencia.DataBase
             return listado;
         }
 
-        // Método para borrar un registro
+        //Borra un registro de una tabla
         public void BorrarRegistro(string id, String nombreArchivo)
         {
             string rutaArchivo = Path.Combine(rutaBase, nombreArchivo);
@@ -74,7 +75,7 @@ namespace Persistencia.DataBase
             }
         }
 
-        // Método para agregar un registro
+        //Agrega un registro a una tabla
         public void AgregarRegistro(string nombreArchivo, string nuevoRegistro)
         {
             string rutaArchivo = Path.Combine(rutaBase, nombreArchivo);

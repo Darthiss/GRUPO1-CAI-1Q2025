@@ -10,7 +10,6 @@ namespace Persistencia
 {
 
     //Capa encargada de acceder a las distintas formas de persistencia que tenga el proyecto. Se comunica con la capa de Negocio
-
     public class UsuarioPersistencia
     {
 
@@ -42,7 +41,7 @@ namespace Persistencia
 
         }
 
-        //Este metodo devuelve la lista de legajos bloqueados.
+        //Devuelve la lista de legajos bloqueados.
         public List <string> obtenerLegajosBloqueados()
         {
             List<String> usuarios = dataBaseUtils.BuscarRegistro("usuario_bloqueado.csv");
@@ -50,7 +49,7 @@ namespace Persistencia
             return usuarios;
         }
 
-    //Este metodo anota un intento fallido de login.
+        //Anota un intento fallido de login.
         public void anotarIntentoFallido(String legajo)
         {
             String linea = "";
@@ -64,11 +63,14 @@ namespace Persistencia
             dataBaseUtils.AgregarRegistro(archivo, linea);
 
         }
+
+        //Borra todos los intentos fallidos de login de un legajo.
         public void BorrarIntentosFallidos(string legajo)
         {
             dataBaseUtils.BorrarRegistro(legajo, "login_intentos.csv");
         }
 
+        //Cuenta la cantidad de intentos fallidos de login de un legajo.
         public int ContarIntentosFallidos(string legajo)
 
         {
@@ -84,6 +86,8 @@ namespace Persistencia
             }
             return contador;
         }
+
+        //Valida si el usuario tiene 3 intentos fallidos de login y lo bloquea.
         public void ValidarBloqueoUsuario(string legajo)
         {
             if (ContarIntentosFallidos(legajo) >= 3)
@@ -92,11 +96,14 @@ namespace Persistencia
 
             }
         }
+
+        //Bloquea un usuario.
         public void BloquearUsuario(string legajo)
         {
             dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo + "\n");
         }
 
+        //Cambia la contraseña de un usuario.
         public void CambiarContraseña(string usuario, string contraseñaNueva)
         {
             Credencial credencial = login(usuario);
@@ -105,6 +112,9 @@ namespace Persistencia
 
             dataBaseUtils.BorrarRegistro(legajo, "credenciales.csv");
 
+            dataBaseUtils.AgregarRegistro("credenciales.csv", credencial.ToString());
+
+            BorrarIntentosFallidos(legajo);
 
         }
     }

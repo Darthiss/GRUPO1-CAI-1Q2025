@@ -45,32 +45,21 @@ namespace TemplateTPCorto
 
             LoginNegocio loginNegocio = new LoginNegocio();
             ResultadoLogin resultadoLogin= loginNegocio.login(usuario, password);
-            switch (resultadoLogin.Estado)
-            {
-                case EstadoLogin.exitoso:
-                    MessageBox.Show("Bienvenido");
-                    break;
-                case EstadoLogin.primerlogin:
-                    MessageBox.Show("Primer Login, debe cambiar su contraseña");
-                    break;
-                case EstadoLogin.errorcredenciales:
-                    MessageBox.Show("Error en las credenciales");
-                    break;
-                case EstadoLogin.usuariobloqueado:
-                    MessageBox.Show("El usuario se ha bloqueado");
-                    break;
-                case EstadoLogin.contraseñavencida:
-                    MessageBox.Show("Debe cambiar la contraseña");
-                    break;
 
+            MessageBox.Show(resultadoLogin.Mensaje);
+
+            if (resultadoLogin.Estado == EstadoLogin.exitoso)
+            {
+                this.Close(); // redirigimos a otro form
             }
-            
-           /* if (ValidarContraseniaExpirada == true)
+
+            if ( resultadoLogin.Estado == EstadoLogin.contraseñavencida)
             {
                 this.Hide();
-                Form2 formMenu = new Form2();
-                formMenu.ShowDialog();
-            }*/
+                FormCambioContraseña formCambioContraseña = new FormCambioContraseña();
+                formCambioContraseña.ShowDialog();
+            }
+
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    internal class CambioContraseñaNegocio
+    public class CambioContraseñaNegocio
     {
         private readonly UsuarioPersistencia usuarioPersistencia;
 
@@ -17,27 +17,47 @@ namespace Negocio
         }
 
         
-        public void CambiarContraseña(string usuario, string contraseñaActual, string contraseñaNueva)
+        public ResultadoCambioContraseña CambiarContraseña(string usuario, string contraseñaActual, string contraseñaNueva)
         {
             LoginNegocio loginNegocio = new LoginNegocio();
             ResultadoLogin resultadoLogin = loginNegocio.login(usuario, contraseñaActual);
+
+            ResultadoCambioContraseña resultado = new ResultadoCambioContraseña();
+
             switch (resultadoLogin.Estado)
             {
                 case EstadoLogin.exitoso:
-                    UsuarioPersistencia.CambiarContraseña(usuario, contraseñaNueva);
-                    MessageBox.Show("Contraseña cambiada correctamente");
-                    break;
                 case EstadoLogin.contraseñavencida:
-                    MessageBox.Show("Contraseña cambiada correctamente");
-                    break;
+                case EstadoLogin.primerlogin:
+                    if (resultadoLogin.Credencial.Contrasena == contraseñaNueva)
+                    {
+                        resultado.Estado = EstadoCambioContraseña.ContraseñaIgualALaAnterior;
+                        resultado.Mensaje = "La nueva contraseña no debe ser igual a la anterior.";
+                        return resultado;
+                    }
+
+                    usuarioPersistencia.CambiarContraseña(usuario, contraseñaNueva);
+                    resultado.Estado = EstadoCambioContraseña.Exito;
+                    resultado.Mensaje = "Contraseña cambiada correctamente.";
+                    return resultado;
+
                 case EstadoLogin.errorcredenciales:
-                    MessageBox.Show("Error en las credenciales");
-                    break;
+                    resultado.Estado = EstadoCambioContraseña.CredencialesInvalidas;
+                    resultado.Mensaje = "Error en las credenciales.";
+                    return resultado;
+
                 case EstadoLogin.usuariobloqueado:
-                    MessageBox.Show("El usuario se ha bloqueado");
-                    break;
+                    resultado.Estado = EstadoCambioContraseña.UsuarioBloqueado;
+                    resultado.Mensaje = "El usuario se encuentra bloqueado.";
+                    return resultado;
+
+                default:
+                    resultado.Estado = EstadoCambioContraseña.ErrorInterno;
+                    resultado.Mensaje = "Error inesperado.";
+                    return resultado;
 
             }
+        
 
 
         }

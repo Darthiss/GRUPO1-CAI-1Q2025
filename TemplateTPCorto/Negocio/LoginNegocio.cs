@@ -28,6 +28,7 @@ namespace Negocio
             if (credencial == null)
             {
                 resultado.Estado = EstadoLogin.errorcredenciales;
+                resultado.Mensaje = "Error en las credenciales.";
                 return resultado;
             }
             string legajo = credencial.Legajo;
@@ -36,7 +37,7 @@ namespace Negocio
             if (LegajoEstaBloqueado(legajo))
             {
                 resultado.Estado = EstadoLogin.usuariobloqueado;
-                // Si el usuario está bloqueado, no se puede loguear, da error
+                resultado.Mensaje = "El usuario se ha bloqueado";
                 return resultado;
             }
 
@@ -46,17 +47,21 @@ namespace Negocio
                 if (ValidarContraseniaExpirada(credencial.FechaUltimoLogin))
                 {
                     resultado.Estado = EstadoLogin.contraseñavencida;
+                    resultado.Mensaje = "La contraseña ha vencido, debe cambiarla.";
                     return resultado;
                 }
                 if (ValidarPrimerIngreso(credencial.FechaUltimoLogin))
                 {
                     resultado.Estado = EstadoLogin.primerlogin;
+                    resultado.Mensaje = "Primer Login, debe cambiar su contraseña";
                     return resultado;
                 }
                 resultado.Estado = EstadoLogin.exitoso;
+                resultado.Mensaje = "Bienvenido";
                 return resultado;
             }
             resultado.Estado = EstadoLogin.errorcredenciales;
+            resultado.Mensaje = "Error en las credenciales.";
            
 
             usuarioPersistencia.anotarIntentoFallido(legajo);
@@ -65,9 +70,10 @@ namespace Negocio
             return resultado;
         }
        
+        //Devuelve True si la contraseña esta expirada
         public bool ValidarContraseniaExpirada(DateTime FechaUltimoLogin)
         {
-            return (FechaUltimoLogin.AddDays(30) > DateTime.Now);
+            return (FechaUltimoLogin.AddDays(30) < DateTime.Now);
             
         }
         public bool LegajoEstaBloqueado(string legajo)

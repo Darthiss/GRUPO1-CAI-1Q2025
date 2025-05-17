@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace TemplateTPCorto
 {
-    public partial class Form2 : Form
+    public partial class FormCambioContraseña : Form
     {
-        public Form2()
+        public FormCambioContraseña()
         {
             InitializeComponent();
         }
@@ -63,27 +63,20 @@ namespace TemplateTPCorto
                 MessageBox.Show("La nueva contraseña no debe ser igual a la actual.");
                 return;
             }
-            LoginNegocio loginNegocio = new LoginNegocio();
-            ResultadoLogin resultadoLogin = loginNegocio.login(usuario, contraseñaActual);
-            switch (resultadoLogin.Estado)
-            {
-                case EstadoLogin.exitoso:
-                    MessageBox.Show("Contraseña cambiada correctamente");
-                    break;
-                case EstadoLogin.contraseñavencida:
-                    MessageBox.Show("Contraseña cambiada correctamente");
-                    break;
-                case EstadoLogin.errorcredenciales:
-                    MessageBox.Show("Error en las credenciales");
-                    break;
-                case EstadoLogin.usuariobloqueado:
-                    MessageBox.Show("El usuario se ha bloqueado");
-                    break;
 
+            // Ejecuta la lógica de negocio
+            CambioContraseñaNegocio cambioContraseñaNegocio = new CambioContraseñaNegocio();
+            ResultadoCambioContraseña resultado = cambioContraseñaNegocio.CambiarContraseña(usuario, contraseñaActual, contraseñaNueva);
+
+            // Mostramos el mensaje y tomamos alguna decisión según el estado
+            MessageBox.Show(resultado.Mensaje);
+
+            if (resultado.Estado == EstadoCambioContraseña.Exito)
+            {
+                this.Close(); // o redirigir a otro form si querés
             }
 
-
-
         }
+
     }
 }
