@@ -80,6 +80,12 @@ namespace Persistencia
 
         }
 
+        public void SolicitarModificarPersona(Persona persona)
+        {
+            dataBaseUtils.BorrarRegistro(persona.Legajo, "persona.csv");
+            dataBaseUtils.AgregarRegistro("persona.csv", persona.ToString());
+        }
+
         //Devuelve la lista de legajos bloqueados.
         public List <string> obtenerLegajosBloqueados()
         {

@@ -238,6 +238,7 @@
             this.btnModificarPersona.TabIndex = 23;
             this.btnModificarPersona.Text = "Modificar Persona";
             this.btnModificarPersona.UseVisualStyleBackColor = true;
+            this.btnModificarPersona.Click += new System.EventHandler(this.btnModificarPersona_Click);
             // 
             // btnDesbloquearCredencial
             // 

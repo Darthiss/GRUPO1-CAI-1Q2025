@@ -24,5 +24,10 @@ namespace Negocio
         {
             return usuarioPersistencia.BuscarPersona(legajo);
         }
+
+        public void SolicitarModificarPersona(Persona persona)
+        {
+            usuarioPersistencia.SolicitarModificarPersona(persona);
+        }
     }
 }
