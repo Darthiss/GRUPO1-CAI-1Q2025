@@ -59,7 +59,7 @@ namespace TemplateTPCorto
                 if (perfil == "2")
                 {
                     this.Hide();
-                    FormSupervisor formSupervisor = new FormSupervisor();
+                    FormSupervisor formSupervisor = new FormSupervisor(resultadoLogin.Credencial.Legajo);
                     formSupervisor.ShowDialog();
                 }
                 if (perfil == "3")

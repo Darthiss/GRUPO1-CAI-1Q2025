@@ -17,9 +17,13 @@ namespace TemplateTPCorto
 {
     public partial class FormSupervisor : Form
     {
-        public FormSupervisor()
+
+        private string legajoSupervisor;
+
+        public FormSupervisor(string legajoSupervisor)
         {
             InitializeComponent();
+            this.legajoSupervisor = legajoSupervisor;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -85,10 +89,9 @@ namespace TemplateTPCorto
                 // Ya se mostró el mensaje de error en el método, simplemente cortamos
                 return;
             }
-            string datosPersona = $"{legajo};{nombre};{apellido};{dni};{SalidaFechaIngreso:dd/MM/yyyy}";
-            Persona persona = new Persona(datosPersona);
+            
             GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
-            gestionUsuariosNegocio.SolicitarModificarPersona(persona);
+            gestionUsuariosNegocio.SolicitarModificarPersona(legajo, nombre, apellido, dni, SalidaFechaIngreso, legajoSupervisor);
         }
         private bool ValidarFechaIngreso(string fechaTexto, out DateTime fechaIngreso)
         {

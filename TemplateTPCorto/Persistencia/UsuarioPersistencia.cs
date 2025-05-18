@@ -191,5 +191,13 @@ namespace Persistencia
             }
             return null;
         }
+
+
+        public void SolicitarModificarPersona(Operacion operacion,OperacionCambioPersona operacionCambioPersona)
+        {
+            dataBaseUtils.AgregarRegistro("autorizacion.csv", operacion.ToString());
+            dataBaseUtils.AgregarRegistro("operacion_cambio_persona.csv", operacionCambioPersona.ToString());
+        }
+
     }
 }

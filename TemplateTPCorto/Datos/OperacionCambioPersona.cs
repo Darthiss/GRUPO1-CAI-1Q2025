@@ -8,6 +8,16 @@ namespace Datos
 {
     public class OperacionCambioPersona
     {
+        public OperacionCambioPersona(string idOperacion, string legajo, string nombre, string apellido, string dni, DateTime fechaIngreso)
+        {
+            IdOperacion = idOperacion;
+            Legajo = legajo;
+            Nombre = nombre;
+            Apellido = apellido;
+            Dni = dni;
+            FechaIngreso = fechaIngreso;
+        }
+
         public string IdOperacion { get; set; }
         public string Legajo { get; set; }
         public string Nombre { get; set; }
@@ -17,7 +27,7 @@ namespace Datos
 
         public override string ToString()
         {
-            return $"{IdOperacion};{Legajo};{Nombre};{Apellido};{Dni};{FechaIngreso:dd/MM/yyyy}";
+            return $"\n{IdOperacion};{Legajo};{Nombre};{Apellido};{Dni};{FechaIngreso:dd/MM/yyyy}";
         }
     }
 }

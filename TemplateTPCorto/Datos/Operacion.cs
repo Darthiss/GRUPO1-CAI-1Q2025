@@ -8,6 +8,17 @@ namespace Datos
 {
     public class Operacion
     {
+        public Operacion(string idOperacion, string tipoOperacion, string estado, string legajoSolicitante, DateTime fechaSolicitud, string legajoAutorizador, DateTime? fechaAutorizacion)
+        {
+            IdOperacion = idOperacion;
+            TipoOperacion = tipoOperacion;
+            Estado = estado;
+            LegajoSolicitante = legajoSolicitante;
+            FechaSolicitud = fechaSolicitud;
+            LegajoAutorizador = legajoAutorizador;
+            FechaAutorizacion = fechaAutorizacion;
+        }
+
         public string IdOperacion { get; set; }
         public string TipoOperacion { get; set; } // "ModificarPersona", "CambioCredencial"
         public string Estado { get; set; } // "Pendiente", "Autorizada", "Rechazada"
@@ -20,7 +31,7 @@ namespace Datos
             string fechaAutorizacionStr = FechaAutorizacion.HasValue ? FechaAutorizacion.Value.ToString("dd/MM/yyyy") : "";
             string legajoAutorizadorStr = LegajoAutorizador ?? "";
 
-            return $"{IdOperacion};{TipoOperacion};{Estado};{LegajoSolicitante};{FechaSolicitud:dd/MM/yyyy};{legajoAutorizadorStr};{fechaAutorizacionStr}";
+            return $"\n{IdOperacion};{TipoOperacion};{Estado};{LegajoSolicitante};{FechaSolicitud:dd/MM/yyyy};{legajoAutorizadorStr};{fechaAutorizacionStr}";
         }
     }
 

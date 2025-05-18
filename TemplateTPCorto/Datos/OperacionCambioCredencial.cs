@@ -8,6 +8,17 @@ namespace Datos
 {
     public class OperacionCambioCredencial
     {
+        public OperacionCambioCredencial(string idOperacion, string legajo, string nombreUsuario, string contrasena, string idPerfil, DateTime fechaAlta, DateTime fechaUltimoLogin)
+        {
+            IdOperacion = idOperacion;
+            Legajo = legajo;
+            NombreUsuario = nombreUsuario;
+            Contrasena = contrasena;
+            IdPerfil = idPerfil;
+            FechaAlta = fechaAlta;
+            FechaUltimoLogin = fechaUltimoLogin;
+        }
+
         public string IdOperacion { get; set; }
         public string Legajo { get; set; }
         public string NombreUsuario { get; set; }
@@ -18,7 +29,7 @@ namespace Datos
 
         public override string ToString()
         {
-            return $"{IdOperacion};{Legajo};{NombreUsuario};{Contrasena};{IdPerfil};{FechaAlta:dd/MM/yyyy};{FechaUltimoLogin:dd/MM/yyyy}";
+            return $"\n{IdOperacion};{Legajo};{NombreUsuario};{Contrasena};{IdPerfil};{FechaAlta:dd/MM/yyyy};{FechaUltimoLogin:dd/MM/yyyy}";
         }
     }
 }
