@@ -10,7 +10,7 @@ namespace Persistencia.DataBase
     public class DataBaseUtils
     {
 
-        private readonly string rutaBase = @"S:\Facultad 2025\TP CAI\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas\";
+        private readonly string rutaBase = @"C:\Users\Delfi\OneDrive\Documents\TPCAI1\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas\";
 
         //Devuelve TODOS los registros de una tabla...
         public List<String> BuscarRegistro(String nombreArchivo)

@@ -58,6 +58,7 @@ namespace Negocio
                 }
                 resultado.Estado = EstadoLogin.exitoso;
                 resultado.Mensaje = "Bienvenido";
+                usuarioPersistencia.GuardarFechaLogin(usuario);
                 return resultado;
             }
             resultado.Estado = EstadoLogin.errorcredenciales;

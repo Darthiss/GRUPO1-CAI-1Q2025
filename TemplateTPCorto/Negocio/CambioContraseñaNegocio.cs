@@ -39,6 +39,7 @@ namespace Negocio
                     usuarioPersistencia.CambiarContraseña(usuario, contraseñaNueva);
                     resultado.Estado = EstadoCambioContraseña.Exito;
                     resultado.Mensaje = "Contraseña cambiada correctamente.";
+                    usuarioPersistencia.GuardarFechaLogin(usuario);
                     return resultado;
 
                 case EstadoLogin.errorcredenciales:

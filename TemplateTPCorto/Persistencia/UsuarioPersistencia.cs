@@ -117,5 +117,20 @@ namespace Persistencia
             BorrarIntentosFallidos(legajo);
 
         }
+
+        public void GuardarFechaLogin(string usuario)
+        {
+
+            Credencial credencial = login(usuario);
+            string legajo = credencial.Legajo;
+            credencial.FechaUltimoLogin = DateTime.Now;
+
+            dataBaseUtils.BorrarRegistro(legajo, "credenciales.csv");
+
+            dataBaseUtils.AgregarRegistro("credenciales.csv", credencial.ToString());
+
+            BorrarIntentosFallidos(legajo);
+
+        }
     }
 }
