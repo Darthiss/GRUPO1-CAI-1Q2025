@@ -1,5 +1,6 @@
 ﻿using Negocio;
 using Datos;
+using Datos.Login;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,13 +40,18 @@ namespace TemplateTPCorto
                 MessageBox.Show("No se encontró el legajo.");
                 return;
             }
+            Persona persona = gestionUsuariosNegocio.BuscarPersona(legajo);
+
             txtNUsuario.Text = credencial.NombreUsuario;
             txtContraseña.Text = credencial.Contrasena;
             //aca va perfil
-            txtFAlta.Text = credencial.FechaAlta.ToString();
-            txtFUltimoLogin.Text = credencial.FechaUltimoLogin.ToString();
+            txtFAlta.Text = credencial.FechaAlta.ToString("dd/MM/yyyy");
+            txtFUltimoLogin.Text = credencial.FechaUltimoLogin.ToString("dd/MM/yyyy");
 
-
+            txtNombre.Text = persona.Nombre;
+            txtApellido.Text = persona.Apellido;
+            txtDNI.Text = persona.DNI;
+            txtFIngreso.Text = persona.FechaIngreso.ToString("dd/MM/yyyy");
         }
 
         private void label3_Click(object sender, EventArgs e)

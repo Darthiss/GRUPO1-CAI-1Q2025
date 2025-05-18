@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.Login;
 using Persistencia.DataBase;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,25 @@ namespace Persistencia
 
                     Credencial credencial = new Credencial(linea);
                     return credencial;
+
+                }
+
+            }
+            return null;
+
+        }
+        public Persona BuscarPersona(String legajo)
+        {
+            List<String> registros = dataBaseUtils.BuscarRegistro("persona.csv");
+
+            foreach (String linea in registros)
+            {
+                String[] datos = linea.Split(';');
+                if (datos[0].Equals(legajo))
+                {
+
+                    Persona persona = new Persona(linea);
+                    return persona;
 
                 }
 

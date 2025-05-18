@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.Login;
 using Persistencia;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,10 @@ namespace Negocio
         public Credencial BuscarCredencial(string legajo)
         { 
            return usuarioPersistencia.BuscarCredencial(legajo);            
+        }
+        public Persona BuscarPersona(string legajo)
+        {
+            return usuarioPersistencia.BuscarPersona(legajo);
         }
     }
 }
