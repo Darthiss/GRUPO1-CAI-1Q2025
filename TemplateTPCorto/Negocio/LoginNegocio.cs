@@ -87,7 +87,11 @@ namespace Negocio
         {
             return (FechaUltimoLogin == null);
         }
-            
+
+        public string BuscarPerfil(string legajo)
+        { 
+            return usuarioPersistencia.BuscarPerfil(legajo);            
+        }
        
     }
 }

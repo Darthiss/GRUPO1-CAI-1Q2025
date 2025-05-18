@@ -40,6 +40,25 @@ namespace Persistencia
             return null;
 
         }
+        public Credencial BuscarCredencial(String legajo)
+        {
+            List<String> registros = dataBaseUtils.BuscarRegistro("credenciales.csv");
+
+            foreach (String linea in registros)
+            {
+                String[] datos = linea.Split(';');
+                if (datos[0].Equals(legajo))
+                {
+
+                    Credencial credencial = new Credencial(linea);
+                    return credencial;
+
+                }
+
+            }
+            return null;
+
+        }
 
         //Devuelve la lista de legajos bloqueados.
         public List <string> obtenerLegajosBloqueados()
@@ -131,6 +150,20 @@ namespace Persistencia
 
             BorrarIntentosFallidos(legajo);
 
+        }
+
+        public string BuscarPerfil(string legajo)
+        {
+            List<string> perfiles = dataBaseUtils.BuscarRegistro("usuario_perfil.csv");
+            foreach (string perfil in perfiles)
+            { 
+                string[] datos = perfil.Split(';');
+                if (datos[0]==legajo)
+                {
+                    return datos[1];  
+                }
+            }
+            return null;
         }
     }
 }

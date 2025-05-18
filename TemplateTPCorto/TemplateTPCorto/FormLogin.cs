@@ -50,7 +50,24 @@ namespace TemplateTPCorto
 
             if (resultadoLogin.Estado == EstadoLogin.exitoso)
             {
-                this.Close(); // redirigimos a otro form
+                string perfil = loginNegocio.BuscarPerfil(resultadoLogin.Credencial.Legajo);
+                if (perfil == "1")
+                { 
+                    this.Hide();
+                    // aca va a ir la Fase 2 
+                }
+                if (perfil == "2")
+                {
+                    this.Hide();
+                    FormSupervisor formSupervisor = new FormSupervisor();
+                    formSupervisor.ShowDialog();
+                }
+                if (perfil == "3")
+                {
+                    this.Hide();
+                    FormAdministrador formAdministrador = new FormAdministrador();
+                    formAdministrador.ShowDialog();
+                }
             }
 
             if ( resultadoLogin.Estado == EstadoLogin.contraseñavencida)
@@ -59,6 +76,7 @@ namespace TemplateTPCorto
                 FormCambioContraseña formCambioContraseña = new FormCambioContraseña();
                 formCambioContraseña.ShowDialog();
             }
+
 
         }
     }
