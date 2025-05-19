@@ -53,7 +53,8 @@ namespace TemplateTPCorto
             txtContraseña.Text = credencial.Contrasena;
             txtIDperfil.Text = gestionUsuariosNegocio.BuscarPerfil(legajo);
             txtFAlta.Text = credencial.FechaAlta.ToString("dd/MM/yyyy");
-            txtFUltimoLogin.Text = credencial.FechaUltimoLogin.ToString("dd/MM/yyyy");
+            txtFUltimoLogin.Text = credencial.FechaUltimoLogin.HasValue ? credencial.FechaUltimoLogin.Value.ToString("dd/M/yyyy") : "NULL";
+
 
             txtNombre.Text = persona.Nombre;
             txtApellido.Text = persona.Apellido;

@@ -44,18 +44,21 @@ namespace Negocio
             if (credencial.Contrasena.Equals(password))
             {
                 usuarioPersistencia.BorrarIntentosFallidos(legajo);
-                if (ValidarContraseniaExpirada(credencial.FechaUltimoLogin))
-                {
-                    resultado.Estado = EstadoLogin.contraseñavencida;
-                    resultado.Mensaje = "La contraseña ha vencido, debe cambiarla.";
-                    return resultado;
-                }
+
                 if (ValidarPrimerIngreso(credencial.FechaUltimoLogin))
                 {
                     resultado.Estado = EstadoLogin.primerlogin;
                     resultado.Mensaje = "Primer Login, debe cambiar su contraseña";
                     return resultado;
                 }
+
+                if (ValidarContraseniaExpirada(credencial.FechaUltimoLogin))
+                {
+                    resultado.Estado = EstadoLogin.contraseñavencida;
+                    resultado.Mensaje = "La contraseña ha vencido, debe cambiarla.";
+                    return resultado;
+                }
+                
                 resultado.Estado = EstadoLogin.exitoso;
                 resultado.Mensaje = "Bienvenido";
                 usuarioPersistencia.GuardarFechaLogin(usuario);
@@ -72,9 +75,15 @@ namespace Negocio
         }
        
         //Devuelve True si la contraseña esta expirada
-        public bool ValidarContraseniaExpirada(DateTime FechaUltimoLogin)
+        public bool ValidarContraseniaExpirada(DateTime? FechaUltimoLogin)
         {
-            return (FechaUltimoLogin.AddDays(30) < DateTime.Now);
+            if (FechaUltimoLogin == null)
+            {
+                return true; // Si no hay fecha de último login, consideramos que la contraseña está expirada
+            }
+
+            DateTime fecha = FechaUltimoLogin.Value;
+            return fecha.AddDays(30) < DateTime.Now;
             
         }
         public bool LegajoEstaBloqueado(string legajo)
@@ -83,7 +92,7 @@ namespace Negocio
 
             return usuarios.Contains(legajo);
         }
-        public bool ValidarPrimerIngreso(DateTime FechaUltimoLogin)
+        public bool ValidarPrimerIngreso(DateTime? FechaUltimoLogin)
         {
             return (FechaUltimoLogin == null);
         }

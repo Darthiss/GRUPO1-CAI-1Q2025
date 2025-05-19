@@ -1,6 +1,6 @@
 ﻿namespace TemplateTPCorto
 {
-    partial class btnCargarPendientes
+    partial class FormAdministrador
     {
         /// <summary>
         /// Required designer variable.
@@ -55,8 +55,9 @@
             this.Rechazar});
             this.dgvOperaciones.Location = new System.Drawing.Point(33, 83);
             this.dgvOperaciones.Name = "dgvOperaciones";
-            this.dgvOperaciones.Size = new System.Drawing.Size(756, 323);
+            this.dgvOperaciones.Size = new System.Drawing.Size(752, 323);
             this.dgvOperaciones.TabIndex = 0;
+            this.dgvOperaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOperaciones_CellContentClick);
             // 
             // IdOperacion
             // 
@@ -109,14 +110,14 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnCargarPendientes_Click);
             // 
-            // btnCargarPendientes
+            // FormAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 488);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvOperaciones);
-            this.Name = "btnCargarPendientes";
+            this.Name = "FormAdministrador";
             this.Text = "FormAdministrador";
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperaciones)).EndInit();
             this.ResumeLayout(false);

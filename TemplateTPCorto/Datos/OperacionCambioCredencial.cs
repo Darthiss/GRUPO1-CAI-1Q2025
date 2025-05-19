@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,18 @@ namespace Datos
             IdPerfil = idPerfil;
             FechaAlta = fechaAlta;
             FechaUltimoLogin = fechaUltimoLogin;
+        }
+
+        public OperacionCambioCredencial(string registro)
+        {
+            var datos = registro.Split(';');
+            IdOperacion = datos[0];
+            Legajo = datos[1];
+            NombreUsuario = datos[2];
+            Contrasena = datos[3];
+            IdPerfil = datos[4];
+            FechaAlta = DateTime.ParseExact(datos[5], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            FechaUltimoLogin = DateTime.ParseExact(datos[6], "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
         public string IdOperacion { get; set; }

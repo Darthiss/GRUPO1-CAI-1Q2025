@@ -13,13 +13,13 @@ namespace Datos
         private String _nombreUsuario;
         private String _contrasena;
         private DateTime _fechaAlta;
-        private DateTime _fechaUltimoLogin;
+        private DateTime? _fechaUltimoLogin;
 
         public string Legajo { get => _legajo; set => _legajo = value; }
         public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
         public string Contrasena { get => _contrasena; set => _contrasena = value; }
         public DateTime FechaAlta { get => _fechaAlta; set => _fechaAlta = value; }
-        public DateTime FechaUltimoLogin { get => _fechaUltimoLogin; set => _fechaUltimoLogin = value; }
+        public DateTime? FechaUltimoLogin { get => _fechaUltimoLogin; set => _fechaUltimoLogin = value; }
 
 
         public Credencial(String registro)
@@ -29,14 +29,22 @@ namespace Datos
             this._nombreUsuario = datos[1];
             this._contrasena = datos[2];
             this._fechaAlta = DateTime.ParseExact(datos[3], "d/M/yyyy", CultureInfo.InvariantCulture);
-            this._fechaUltimoLogin = DateTime.ParseExact(datos[4], "d/M/yyyy", CultureInfo.InvariantCulture);
 
+            if (string.IsNullOrEmpty(datos[4]))
+            {
+                _fechaUltimoLogin = null;
+            }
+            else
+            {
+                _fechaUltimoLogin = DateTime.ParseExact(datos[4], "d/M/yyyy", CultureInfo.InvariantCulture);
+            }
 
         }
 
         public override string ToString()
         {
-            return $"{_legajo};{_nombreUsuario};{_contrasena};{_fechaAlta:dd/M/yyyy};{_fechaUltimoLogin:dd/M/yyyy}";
+            string fechaLoginStr = _fechaUltimoLogin.HasValue ? _fechaUltimoLogin.Value.ToString("dd/M/yyyy") : "";
+            return $"{_legajo};{_nombreUsuario};{_contrasena};{_fechaAlta:dd/M/yyyy};{fechaLoginStr}";
         }
 
     }

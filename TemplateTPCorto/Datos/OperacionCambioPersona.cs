@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,17 @@ namespace Datos
             Apellido = apellido;
             Dni = dni;
             FechaIngreso = fechaIngreso;
+        }
+
+        public OperacionCambioPersona(string registro)
+        {
+            var datos = registro.Split(';');
+            IdOperacion = datos[0];
+            Legajo = datos[1];
+            Nombre = datos[2];
+            Apellido = datos[3];
+            Dni = datos[4];
+            FechaIngreso = DateTime.ParseExact(datos[5], "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
         public string IdOperacion { get; set; }

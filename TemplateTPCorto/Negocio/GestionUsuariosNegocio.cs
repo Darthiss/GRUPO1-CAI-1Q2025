@@ -64,5 +64,35 @@ namespace Negocio
         {
             return usuarioPersistencia.ObtenerOperacionesPendientes();
         }
+
+        public OperacionCambioCredencial ObtenerOperacionCambioCredencial(string idOperacion)
+        {
+            return usuarioPersistencia.ObtenerOperacionCambioCredencial(idOperacion);
+        }
+
+        public OperacionCambioPersona ObtenerOperacionCambioPersona(string idOperacion)
+        {
+            return usuarioPersistencia.ObtenerOperacionCambioPersona(idOperacion);
+        }
+
+        public void AutorizarOperacion(string idOperacion, string tipoOperacion, string legajoAutorizador)
+        {
+            usuarioPersistencia.ActualizarEstadoOperacion(idOperacion, "Autorizada", legajoAutorizador);
+
+            if (tipoOperacion == "ModificarPersona")
+            {
+                usuarioPersistencia.AplicarOperacionCambioPersona(idOperacion);
+            }
+            else if (tipoOperacion == "CambioCredencial")
+            {
+                usuarioPersistencia.AplicarOperacionCambioCredencial(idOperacion);
+            }
+        }
+
+        public void RechazarOperacion(string idOperacion, string legajoAutorizador)
+        {
+            usuarioPersistencia.ActualizarEstadoOperacion(idOperacion, "Rechazada", legajoAutorizador);
+        }
+
     }
 }

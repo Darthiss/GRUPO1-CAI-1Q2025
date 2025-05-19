@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,24 @@ namespace Datos
             FechaSolicitud = fechaSolicitud;
             LegajoAutorizador = legajoAutorizador;
             FechaAutorizacion = fechaAutorizacion;
+        }
+
+        public Operacion(string linea)
+        {
+            var datos = linea.Split(';');
+            IdOperacion = datos[0];
+            TipoOperacion = datos[1];
+            Estado = datos[2];
+            LegajoSolicitante = datos[3];
+            FechaSolicitud = DateTime.ParseExact(datos[4], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            // Manejo nulos para legajo autorizador y fecha
+            LegajoAutorizador = string.IsNullOrEmpty(datos[5]) ? null : datos[5];
+
+            if (string.IsNullOrEmpty(datos[6]))
+                FechaAutorizacion = null;
+            else
+                FechaAutorizacion = DateTime.ParseExact(datos[6], "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
         public string IdOperacion { get; set; }

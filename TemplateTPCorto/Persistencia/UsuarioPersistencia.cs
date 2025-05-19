@@ -198,7 +198,6 @@ namespace Persistencia
             dataBaseUtils.AgregarRegistro("operacion_cambio_credencial.csv", operacionCambioCredencial.ToString());
         }
 
-
         public List<Operacion> ObtenerOperacionesPendientes()
         {
             List<Operacion> lista = new List<Operacion>();
@@ -208,7 +207,7 @@ namespace Persistencia
             {
                 string[] datos = linea.Split(';');
                 {
-
+                        
                     if (datos[0] == "idOperacion")
                         continue;
 
@@ -231,5 +230,101 @@ namespace Persistencia
             return lista.Where(o => o.Estado == "Pendiente").ToList();
         }
 
-    }
+        public OperacionCambioPersona ObtenerOperacionCambioPersona(string idOperacion)
+        {
+            List<string> registros = dataBaseUtils.BuscarRegistro("operacion_cambio_persona.csv");
+
+            foreach (string linea in registros)
+            {
+                string[] datos = linea.Split(';');
+                if (datos[0] == idOperacion)
+                {
+                    return new OperacionCambioPersona(linea);
+                }
+            }
+            return null;
+        }   
+
+        public OperacionCambioCredencial ObtenerOperacionCambioCredencial(string idOperacion)
+        {
+            List<string> registros = dataBaseUtils.BuscarRegistro("operacion_cambio_credencial.csv");
+
+            foreach (string linea in registros)
+            {
+                string[] datos = linea.Split(';');
+                if (datos[0] == idOperacion)
+                {
+                    return new OperacionCambioCredencial(linea);
+                }
+            }
+            return null;
+
+        }
+
+        public Operacion ObtenerOperacion(string idOperacion)
+        {
+            List<string> registros = dataBaseUtils.BuscarRegistro("autorizacion.csv");
+
+            foreach (string linea in registros)
+            {
+                string[] datos = linea.Split(';');
+                if (datos[0] == idOperacion)
+                {
+                    return new Operacion(linea);
+                }
+            }
+            return null;
+        }
+
+        public void ActualizarEstadoOperacion(string idOperacion, string estado, string legajoAutorizador)
+        {
+
+            Operacion operacion = ObtenerOperacion(idOperacion);
+
+            operacion.Estado = estado;
+            operacion.LegajoAutorizador = legajoAutorizador;
+            operacion.FechaAutorizacion = DateTime.Now;
+
+            dataBaseUtils.BorrarRegistro(idOperacion, "autorizacion.csv");
+            dataBaseUtils.AgregarRegistro("autorizacion.csv", operacion.ToString());
+
+        }
+
+        public void AplicarOperacionCambioPersona(string idOperacion) {
+        
+            OperacionCambioPersona operacion = ObtenerOperacionCambioPersona(idOperacion);
+            Persona persona = BuscarPersona(operacion.Legajo);
+
+            if (persona != null)
+            {
+                persona.Nombre = operacion.Nombre;
+                persona.Apellido = operacion.Apellido;
+                persona.DNI = operacion.Dni;
+                persona.FechaIngreso = operacion.FechaIngreso;
+
+                dataBaseUtils.BorrarRegistro(operacion.Legajo, "persona.csv");
+                dataBaseUtils.AgregarRegistro("persona.csv", persona.ToString());
+            }
+        
+        }
+
+        public void AplicarOperacionCambioCredencial(string idOperacion) {
+        
+            OperacionCambioCredencial operacion = ObtenerOperacionCambioCredencial(idOperacion);
+            Credencial credencial = BuscarCredencial(operacion.Legajo);
+
+            if (credencial != null)
+            
+                credencial.NombreUsuario = operacion.NombreUsuario;
+                credencial.Contrasena = operacion.Contrasena;
+                credencial.FechaAlta = operacion.FechaAlta;
+                credencial.FechaUltimoLogin = null;
+
+                dataBaseUtils.BorrarRegistro(operacion.Legajo, "credenciales.csv");
+                dataBaseUtils.AgregarRegistro("credenciales.csv", credencial.ToString());
+            }
+        
+        
+        }
+
 }
