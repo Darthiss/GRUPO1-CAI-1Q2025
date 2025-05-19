@@ -72,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAdministrador.resx">
+      <DependentUpon>FormAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCambioContraseña.resx">
       <DependentUpon>FormCambioContraseña.cs</DependentUpon>
     </EmbeddedResource>

@@ -3,6 +3,7 @@ using Datos.Login;
 using Persistencia.DataBase;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -195,6 +196,39 @@ namespace Persistencia
         {
             dataBaseUtils.AgregarRegistro("autorizacion.csv", operacion.ToString());
             dataBaseUtils.AgregarRegistro("operacion_cambio_credencial.csv", operacionCambioCredencial.ToString());
+        }
+
+
+        public List<Operacion> ObtenerOperacionesPendientes()
+        {
+            List<Operacion> lista = new List<Operacion>();
+            List<string> registros = dataBaseUtils.BuscarRegistro("autorizacion.csv");
+
+            foreach (string linea in registros)
+            {
+                string[] datos = linea.Split(';');
+                {
+
+                    if (datos[0] == "idOperacion")
+                        continue;
+
+                    string id = datos[0];
+                    string tipo = datos[1];
+                    string estado = datos[2];
+                    string legajo = datos[3];
+
+                    DateTime fecha = DateTime.ParseExact(datos[4], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                    string autorizador = string.IsNullOrWhiteSpace(datos[5]) ? null : datos[5];
+
+                    DateTime? fechaAut = string.IsNullOrWhiteSpace(datos[6]) ? (DateTime?)null : DateTime.ParseExact(datos[6], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                    lista.Add(new Operacion(id, tipo, estado, legajo, fecha, autorizador, fechaAut));
+
+                }
+            }
+
+            return lista.Where(o => o.Estado == "Pendiente").ToList();
         }
 
     }

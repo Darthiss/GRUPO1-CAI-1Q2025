@@ -58,5 +58,11 @@ namespace Negocio
         {
             return usuarioPersistencia.BuscarPerfil(legajo);
         }
+
+
+        public List<Operacion> ObtenerOperacionesPendientes()
+        {
+            return usuarioPersistencia.ObtenerOperacionesPendientes();
+        }
     }
 }

@@ -25,11 +25,12 @@ namespace Datos
         public string Contrasena { get; set; }
         public string IdPerfil { get; set; }
         public DateTime FechaAlta { get; set; }
-        public DateTime FechaUltimoLogin { get; set; }
+        public DateTime? FechaUltimoLogin { get; set; }
 
         public override string ToString()
         {
-            return $"\n{IdOperacion};{Legajo};{NombreUsuario};{Contrasena};{IdPerfil};{FechaAlta:dd/MM/yyyy};{FechaUltimoLogin:dd/MM/yyyy}";
+            string fechaUltimoLoginStr = FechaUltimoLogin.HasValue ? FechaUltimoLogin.Value.ToString("dd/MM/yyyy") : "";
+            return $"\n{IdOperacion};{Legajo};{NombreUsuario};{Contrasena};{IdPerfil};{FechaAlta:dd/MM/yyyy};{fechaUltimoLoginStr}";
         }
     }
 }

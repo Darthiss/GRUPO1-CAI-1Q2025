@@ -65,7 +65,7 @@ namespace TemplateTPCorto
                 if (perfil == "3")
                 {
                     this.Hide();
-                    FormAdministrador formAdministrador = new FormAdministrador();
+                    btnCargarPendientes formAdministrador = new btnCargarPendientes();
                     formAdministrador.ShowDialog();
                 }
             }
