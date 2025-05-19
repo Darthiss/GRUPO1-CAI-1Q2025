@@ -104,7 +104,6 @@ namespace Persistencia
 
             linea = "\n"+legajo + ";" + fecha;
 
-            Console.WriteLine("Intento fallido de login: " + linea);
             dataBaseUtils.AgregarRegistro(archivo, linea);
 
         }

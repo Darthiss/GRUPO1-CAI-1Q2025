@@ -18,19 +18,6 @@ namespace TemplateTPCorto
             InitializeComponent();
         }
 
-       public void CambiarContraseña()
-        {
-            string NuevaContraseña = txtContraseñaActual.ToString();
-            string ViejaContraseña = txtUsuario.ToString();
-
-            do
-            {
-
-            } while (NuevaContraseña.Length < 8 || NuevaContraseña != ViejaContraseña);
-
-            
-        }
-
         private void btnCambiarContraseña_Click(object sender, EventArgs e)
         {
             string usuario = txtUsuario.Text;
