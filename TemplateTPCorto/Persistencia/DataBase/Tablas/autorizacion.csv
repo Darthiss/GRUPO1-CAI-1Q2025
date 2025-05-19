@@ -1,2 +1,5 @@
 idOperacion;tipoOperacion;estado;legajoSolicitante;fechaSolicitud;legajoAutorizador;fechaAutorizacion
 1500_20250518203710;ModificarPersona;Pendiente;1500;18/05/2025;;
+1500_20250519172949;ModificarPersona;Pendiente;1500;19/05/2025;;
+
+1500_20250519172950;ModificarCredencial;Pendiente;1500;19/05/2025;;

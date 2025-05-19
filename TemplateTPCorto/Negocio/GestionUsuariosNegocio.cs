@@ -40,5 +40,23 @@ namespace Negocio
 
 
         }
+
+        public void SolicitarModificarCredencial(string legajo, string nombreUsuario, string contrasena, string idPerfil, DateTime fechaAlta, DateTime fechaUltimoLogin , string legajoSolicitante)
+        {
+            string idOperacion = "" + legajoSolicitante + "_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            string tipoOperacion = "ModificarCredencial";
+            string estado = "Pendiente";
+            DateTime fechaSolicitud = DateTime.Now;
+
+            Operacion operacion = new Operacion(idOperacion, tipoOperacion, estado, legajoSolicitante, fechaSolicitud, null, null);
+            OperacionCambioCredencial operacionCambioCredencial = new OperacionCambioCredencial(idOperacion, legajo, nombreUsuario, contrasena, idPerfil, fechaAlta, fechaUltimoLogin);
+
+            usuarioPersistencia.SolicitarModificarCredencial(operacion, operacionCambioCredencial);
+        }
+
+        public string BuscarPerfil(string legajo)
+        {
+            return usuarioPersistencia.BuscarPerfil(legajo);
+        }
     }
 }

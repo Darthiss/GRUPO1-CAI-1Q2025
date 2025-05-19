@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using System.Globalization;
+using System.Net;
 
 namespace TemplateTPCorto
 {
@@ -50,7 +51,7 @@ namespace TemplateTPCorto
 
             txtNUsuario.Text = credencial.NombreUsuario;
             txtContraseña.Text = credencial.Contrasena;
-            //aca va perfil
+            txtIDperfil.Text = gestionUsuariosNegocio.BuscarPerfil(legajo);
             txtFAlta.Text = credencial.FechaAlta.ToString("dd/MM/yyyy");
             txtFUltimoLogin.Text = credencial.FechaUltimoLogin.ToString("dd/MM/yyyy");
 
@@ -92,6 +93,8 @@ namespace TemplateTPCorto
             
             GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
             gestionUsuariosNegocio.SolicitarModificarPersona(legajo, nombre, apellido, dni, SalidaFechaIngreso, legajoSupervisor);
+
+            MessageBox.Show("Solicitud de modificación de Persona enviada.");
         }
         private bool ValidarFechaIngreso(string fechaTexto, out DateTime fechaIngreso)
         {
@@ -122,6 +125,40 @@ namespace TemplateTPCorto
                 return false;
             }
             return true;
+        }
+
+        private void btnDesbloquearCredencial_Click(object sender, EventArgs e)
+        {
+            string legajo = txtLegajo.Text;
+            string nombreUsuario = txtNUsuario.Text;
+            string contraseña = txtContraseña.Text;
+            string idPerfil = txtIDperfil.Text;
+            string fechaDeAlta = txtFAlta.Text;
+            string fechaUiltimoLogin = txtFUltimoLogin.Text;
+
+
+            if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contraseña) || string.IsNullOrEmpty(idPerfil) || string.IsNullOrEmpty(fechaDeAlta) || string.IsNullOrEmpty(fechaUiltimoLogin))
+            {
+                MessageBox.Show("Debe completar todos los campos de la persona.");
+                return;
+            }
+            
+            DateTime SalidaFechaAlta;
+            if (!ValidarFechaIngreso(fechaDeAlta, out SalidaFechaAlta))
+            {
+                return;
+            }
+
+            DateTime SalidaFechaUltimoLogin;
+            if (!ValidarFechaIngreso(fechaDeAlta, out SalidaFechaUltimoLogin))
+            {
+                return;
+            }
+
+            GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
+            gestionUsuariosNegocio.SolicitarModificarCredencial(legajo, nombreUsuario, contraseña, idPerfil, SalidaFechaAlta, SalidaFechaUltimoLogin, legajoSupervisor);
+
+            MessageBox.Show("Solicitud de modificación de Credencial enviada.");
         }
     }
 }

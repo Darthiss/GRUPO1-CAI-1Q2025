@@ -80,13 +80,7 @@ namespace Persistencia
 
         }
 
-        public void SolicitarModificarPersona(Persona persona)
-        {
-            dataBaseUtils.BorrarRegistro(persona.Legajo, "persona.csv");
-            dataBaseUtils.AgregarRegistro("persona.csv", persona.ToString());
-        }
-
-        //Devuelve la lista de legajos bloqueados.
+    
         public List <string> obtenerLegajosBloqueados()
         {
             List<String> usuarios = dataBaseUtils.BuscarRegistro("usuario_bloqueado.csv");
@@ -94,7 +88,6 @@ namespace Persistencia
             return usuarios;
         }
 
-        //Anota un intento fallido de login.
         public void anotarIntentoFallido(String legajo)
         {
             String linea = "";
@@ -196,6 +189,12 @@ namespace Persistencia
         {
             dataBaseUtils.AgregarRegistro("autorizacion.csv", operacion.ToString());
             dataBaseUtils.AgregarRegistro("operacion_cambio_persona.csv", operacionCambioPersona.ToString());
+        }
+
+        public void SolicitarModificarCredencial(Operacion operacion, OperacionCambioCredencial operacionCambioCredencial)
+        {
+            dataBaseUtils.AgregarRegistro("autorizacion.csv", operacion.ToString());
+            dataBaseUtils.AgregarRegistro("operacion_cambio_credencial.csv", operacionCambioCredencial.ToString());
         }
 
     }
