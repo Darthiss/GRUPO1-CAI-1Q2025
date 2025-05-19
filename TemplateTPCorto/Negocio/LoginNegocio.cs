@@ -37,7 +37,7 @@ namespace Negocio
             if (LegajoEstaBloqueado(legajo))
             {
                 resultado.Estado = EstadoLogin.usuariobloqueado;
-                resultado.Mensaje = "El usuario se ha bloqueado";
+                resultado.Mensaje = "El usuario se encuentra bloqueado. Contacte a su Supervisor";
                 return resultado;
             }
 
@@ -48,7 +48,7 @@ namespace Negocio
                 if (ValidarPrimerIngreso(credencial.FechaUltimoLogin))
                 {
                     resultado.Estado = EstadoLogin.primerlogin;
-                    resultado.Mensaje = "Primer Login, debe cambiar su contraseña";
+                    resultado.Mensaje = "Debe cambiar su contraseña";
                     return resultado;
                 }
 

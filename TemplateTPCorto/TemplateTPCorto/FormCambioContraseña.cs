@@ -18,6 +18,12 @@ namespace TemplateTPCorto
             InitializeComponent();
         }
 
+        public FormCambioContraseña(string usuario)
+        {
+            InitializeComponent();
+            txtUsuario.Text = usuario;
+        }
+
         private void btnCambiarContraseña_Click(object sender, EventArgs e)
         {
             string usuario = txtUsuario.Text;
@@ -60,7 +66,10 @@ namespace TemplateTPCorto
 
             if (resultado.Estado == EstadoCambioContraseña.Exito)
             {
-                this.Close(); // o redirigir a otro form si querés
+                this.Close(); 
+                FormLogin formLogin = new FormLogin();
+                formLogin.Show();
+
             }
 
         }

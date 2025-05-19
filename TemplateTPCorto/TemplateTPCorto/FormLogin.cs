@@ -73,7 +73,7 @@ namespace TemplateTPCorto
             if ( resultadoLogin.Estado == EstadoLogin.contraseñavencida || resultadoLogin.Estado == EstadoLogin.primerlogin)
             {
                 this.Hide();
-                FormCambioContraseña formCambioContraseña = new FormCambioContraseña();
+                FormCambioContraseña formCambioContraseña = new FormCambioContraseña(resultadoLogin.Credencial.NombreUsuario);
                 formCambioContraseña.ShowDialog();
             }
 
