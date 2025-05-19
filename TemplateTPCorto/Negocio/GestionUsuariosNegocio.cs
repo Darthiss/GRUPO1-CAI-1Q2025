@@ -83,9 +83,10 @@ namespace Negocio
             {
                 usuarioPersistencia.AplicarOperacionCambioPersona(idOperacion);
             }
-            else if (tipoOperacion == "CambioCredencial")
+            else if (tipoOperacion == "ModificarCredencial")
             {
                 usuarioPersistencia.AplicarOperacionCambioCredencial(idOperacion);
+              
             }
         }
 

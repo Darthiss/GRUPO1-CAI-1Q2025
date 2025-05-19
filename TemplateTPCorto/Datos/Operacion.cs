@@ -50,7 +50,7 @@ namespace Datos
             string fechaAutorizacionStr = FechaAutorizacion.HasValue ? FechaAutorizacion.Value.ToString("dd/MM/yyyy") : "";
             string legajoAutorizadorStr = LegajoAutorizador ?? "";
 
-            return $"\n{IdOperacion};{TipoOperacion};{Estado};{LegajoSolicitante};{FechaSolicitud:dd/MM/yyyy};{legajoAutorizadorStr};{fechaAutorizacionStr}";
+            return $"{IdOperacion};{TipoOperacion};{Estado};{LegajoSolicitante};{FechaSolicitud:dd/MM/yyyy};{legajoAutorizadorStr};{fechaAutorizacionStr}";
         }
     }
 

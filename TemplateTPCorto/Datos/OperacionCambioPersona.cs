@@ -39,7 +39,7 @@ namespace Datos
 
         public override string ToString()
         {
-            return $"\n{IdOperacion};{Legajo};{Nombre};{Apellido};{Dni};{FechaIngreso:dd/MM/yyyy}";
+            return $"{IdOperacion};{Legajo};{Nombre};{Apellido};{Dni};{FechaIngreso:dd/MM/yyyy}";
         }
     }
 }

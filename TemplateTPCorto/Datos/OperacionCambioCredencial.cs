@@ -43,7 +43,7 @@ namespace Datos
         public override string ToString()
         {
             string fechaUltimoLoginStr = FechaUltimoLogin.HasValue ? FechaUltimoLogin.Value.ToString("dd/MM/yyyy") : "";
-            return $"\n{IdOperacion};{Legajo};{NombreUsuario};{Contrasena};{IdPerfil};{FechaAlta:dd/MM/yyyy};{fechaUltimoLoginStr}";
+            return $"{IdOperacion};{Legajo};{NombreUsuario};{Contrasena};{IdPerfil};{FechaAlta:dd/MM/yyyy};{fechaUltimoLoginStr}";
         }
     }
 }

@@ -96,7 +96,7 @@ namespace Persistencia
 
             String fecha = DateTime.Now.ToString("d/M/yyyy");
 
-            linea = "\n"+legajo + ";" + fecha;
+            linea = legajo + ";" + fecha;
 
             dataBaseUtils.AgregarRegistro(archivo, linea);
 
@@ -138,7 +138,12 @@ namespace Persistencia
         //Bloquea un usuario.
         public void BloquearUsuario(string legajo)
         {
-            dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo + "\n");
+            dataBaseUtils.AgregarRegistro("usuario_bloqueado.csv", legajo);
+        }
+
+        public void DesbloquearUsuario(string legajo)
+        {
+            dataBaseUtils.BorrarRegistro(legajo, "usuario_bloqueado.csv");
         }
 
         //Cambia la contraseña de un usuario.
@@ -322,6 +327,9 @@ namespace Persistencia
 
                 dataBaseUtils.BorrarRegistro(operacion.Legajo, "credenciales.csv");
                 dataBaseUtils.AgregarRegistro("credenciales.csv", credencial.ToString());
+
+                DesbloquearUsuario(operacion.Legajo);
+
             }
         
         
