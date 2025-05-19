@@ -16,6 +16,7 @@ namespace TemplateTPCorto
     {
 
         private string legajoAdministrador;
+        private readonly GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
 
         public FormAdministrador(string legajoAdministrador)
         {
@@ -27,7 +28,6 @@ namespace TemplateTPCorto
         {
             dgvOperaciones.Rows.Clear();
 
-            GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
             List<Operacion> operaciones = gestionUsuariosNegocio.ObtenerOperacionesPendientes();
 
             foreach (Operacion op in operaciones)
@@ -86,13 +86,13 @@ namespace TemplateTPCorto
                 string idOperacion = dgvOperaciones.Rows[e.RowIndex].Cells["IdOperacion"].Value.ToString();
                 string tipoOperacion = dgvOperaciones.Rows[e.RowIndex].Cells["TipoOperacion"].Value.ToString();
 
-                GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
-
-                gestionUsuariosNegocio.AutorizarOperacion(idOperacion, tipoOperacion, legajoAdministrador); 
-
-                MessageBox.Show("Operación autorizada y aplicada.");
-                btnCargarPendientes_Click(null, null);
-
+                var confirm = MessageBox.Show("¿Está seguro que desea autorizar esta operación?", "Confirmar autorización", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    gestionUsuariosNegocio.AutorizarOperacion(idOperacion, tipoOperacion, legajoAdministrador);
+                    MessageBox.Show("Operación autorizada y aplicada.");
+                    btnCargarPendientes_Click(null, null);
+                }
             }
 
             else if (dgvOperaciones.Columns[e.ColumnIndex].Name == "Rechazar") {
@@ -100,12 +100,13 @@ namespace TemplateTPCorto
                 string idOperacion = dgvOperaciones.Rows[e.RowIndex].Cells["IdOperacion"].Value.ToString();
                 string tipoOperacion = dgvOperaciones.Rows[e.RowIndex].Cells["TipoOperacion"].Value.ToString();
 
-                GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
-
-                gestionUsuariosNegocio.RechazarOperacion(idOperacion, legajoAdministrador);
-                MessageBox.Show("Operación rechazada");
-
-                btnCargarPendientes_Click(null, null);
+                var confirm = MessageBox.Show("¿Está seguro que desea rechazar esta operación?", "Confirmar rechazo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (confirm == DialogResult.Yes)
+                {
+                    gestionUsuariosNegocio.RechazarOperacion(idOperacion, legajoAdministrador);
+                    MessageBox.Show("Operación rechazada");
+                    btnCargarPendientes_Click(null, null);
+                }
             }
         }
     }

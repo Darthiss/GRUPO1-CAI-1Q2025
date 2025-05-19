@@ -20,6 +20,7 @@ namespace TemplateTPCorto
     {
 
         private string legajoSupervisor;
+        private readonly GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
 
         public FormSupervisor(string legajoSupervisor)
         {
@@ -40,13 +41,13 @@ namespace TemplateTPCorto
                 MessageBox.Show("Debe ingresar un legajo.");
                 return;
             }
-            GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
             Credencial credencial = gestionUsuariosNegocio.BuscarCredencial(legajo);
             if (credencial == null)
             {
                 MessageBox.Show("No se encontró el legajo.");
                 return;
             }
+
             Persona persona = gestionUsuariosNegocio.BuscarPersona(legajo);
 
             txtNUsuario.Text = credencial.NombreUsuario;
@@ -92,7 +93,6 @@ namespace TemplateTPCorto
                 return;
             }
             
-            GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
             gestionUsuariosNegocio.SolicitarModificarPersona(legajo, nombre, apellido, dni, SalidaFechaIngreso, legajoSupervisor);
 
             MessageBox.Show("Solicitud de modificación de Persona enviada.");
@@ -151,12 +151,11 @@ namespace TemplateTPCorto
             }
 
             DateTime SalidaFechaUltimoLogin;
-            if (!ValidarFechaIngreso(fechaDeAlta, out SalidaFechaUltimoLogin))
+            if (!ValidarFechaIngreso(fechaUiltimoLogin, out SalidaFechaUltimoLogin))
             {
                 return;
             }
 
-            GestionUsuariosNegocio gestionUsuariosNegocio = new GestionUsuariosNegocio();
             gestionUsuariosNegocio.SolicitarModificarCredencial(legajo, nombreUsuario, contraseña, idPerfil, SalidaFechaAlta, SalidaFechaUltimoLogin, legajoSupervisor);
 
             MessageBox.Show("Solicitud de modificación de Credencial enviada.");
