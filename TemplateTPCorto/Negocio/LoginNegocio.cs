@@ -32,7 +32,6 @@ namespace Negocio
                 return resultado;
             }
             string legajo = credencial.Legajo;
-         
 
             if (LegajoEstaBloqueado(legajo))
             {
@@ -64,13 +63,13 @@ namespace Negocio
                 usuarioPersistencia.GuardarFechaLogin(usuario);
                 return resultado;
             }
+            
             resultado.Estado = EstadoLogin.errorcredenciales;
             resultado.Mensaje = "Error en las credenciales.";
            
-
             usuarioPersistencia.anotarIntentoFallido(legajo);
-
             usuarioPersistencia.ValidarBloqueoUsuario(legajo);
+            
             return resultado;
         }
        

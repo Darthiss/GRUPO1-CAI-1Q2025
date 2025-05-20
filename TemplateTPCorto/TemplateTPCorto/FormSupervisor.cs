@@ -54,7 +54,7 @@ namespace TemplateTPCorto
             txtContraseña.Text = credencial.Contrasena;
             txtIDperfil.Text = gestionUsuariosNegocio.BuscarPerfil(legajo);
             txtFAlta.Text = credencial.FechaAlta.ToString("dd/MM/yyyy");
-            txtFUltimoLogin.Text = credencial.FechaUltimoLogin.HasValue ? credencial.FechaUltimoLogin.Value.ToString("dd/M/yyyy") : "NULL";
+            txtFUltimoLogin.Text = credencial.FechaUltimoLogin.HasValue ? credencial.FechaUltimoLogin.Value.ToString("dd/MM/yyyy") : "NULL";
 
 
             txtNombre.Text = persona.Nombre;
@@ -92,7 +92,19 @@ namespace TemplateTPCorto
                 // Ya se mostró el mensaje de error en el método, simplemente cortamos
                 return;
             }
-            
+
+            if (!dni.All(char.IsDigit))
+            {
+                MessageBox.Show("El DNI debe contener solo números (sin puntos ni letras).");
+                return;
+            }
+
+            if (dni.Length < 6 || dni.Length > 8)
+            {
+                MessageBox.Show("El DNI debe tener entre 6 y 8 dígitos.");
+                return;
+            }
+
             gestionUsuariosNegocio.SolicitarModificarPersona(legajo, nombre, apellido, dni, SalidaFechaIngreso, legajoSupervisor);
 
             MessageBox.Show("Solicitud de modificación de Persona enviada.");
@@ -140,7 +152,7 @@ namespace TemplateTPCorto
 
             if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contraseña) || string.IsNullOrEmpty(idPerfil) || string.IsNullOrEmpty(fechaDeAlta) || string.IsNullOrEmpty(fechaUiltimoLogin))
             {
-                MessageBox.Show("Debe completar todos los campos de la persona.");
+                MessageBox.Show("Debe completar todos los campos de la credencial.");
                 return;
             }
             

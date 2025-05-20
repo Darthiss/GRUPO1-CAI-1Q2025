@@ -28,7 +28,7 @@ namespace Datos
             this._legajo = datos[0];
             this._nombreUsuario = datos[1];
             this._contrasena = datos[2];
-            this._fechaAlta = DateTime.ParseExact(datos[3], "d/M/yyyy", CultureInfo.InvariantCulture);
+            this._fechaAlta = DateTime.ParseExact(datos[3], "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             if (string.IsNullOrEmpty(datos[4]))
             {
@@ -36,15 +36,15 @@ namespace Datos
             }
             else
             {
-                _fechaUltimoLogin = DateTime.ParseExact(datos[4], "d/M/yyyy", CultureInfo.InvariantCulture);
+                _fechaUltimoLogin = DateTime.ParseExact(datos[4], "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
 
         }
 
         public override string ToString()
         {
-            string fechaLoginStr = _fechaUltimoLogin.HasValue ? _fechaUltimoLogin.Value.ToString("dd/M/yyyy") : "";
-            return $"{_legajo};{_nombreUsuario};{_contrasena};{_fechaAlta:dd/M/yyyy};{fechaLoginStr}";
+            string fechaLoginStr = _fechaUltimoLogin.HasValue ? _fechaUltimoLogin.Value.ToString("dd/MM/yyyy") : "";
+            return $"{_legajo};{_nombreUsuario};{_contrasena};{_fechaAlta:dd/MM/yyyy};{fechaLoginStr}";
         }
 
     }

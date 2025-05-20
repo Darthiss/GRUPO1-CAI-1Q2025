@@ -93,9 +93,20 @@ namespace Persistencia.DataBase
                     return;
                 }
 
+                bool agregarSalto = true;
+                string contenido = File.ReadAllText(rutaArchivo);
+                if (contenido.EndsWith(Environment.NewLine) || contenido.Length == 0)
+                {
+                    agregarSalto = false; // ya tiene salto o está vacío
+                }
+
                 // Abrir el archivo y agregar el nuevo registro
                 using (StreamWriter sw = new StreamWriter(rutaArchivo, append: true))
                 {
+
+                    if (agregarSalto)
+                        sw.WriteLine();
+
                     sw.WriteLine(nuevoRegistro); // Agregar la nueva línea
                 }
 

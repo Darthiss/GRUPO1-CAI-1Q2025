@@ -36,7 +36,7 @@ namespace Datos.Login
 
         public override string ToString()
         {
-            return $"{_legajo};{_nombre};{_apellido};{_dni};{_fechaingreso:dd/M/yyyy}";
+            return $"{_legajo};{_nombre};{_apellido};{_dni};{_fechaingreso:dd/MM/yyyy}";
         }
 
     }

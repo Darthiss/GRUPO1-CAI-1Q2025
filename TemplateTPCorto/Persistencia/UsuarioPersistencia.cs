@@ -94,7 +94,7 @@ namespace Persistencia
             String linea = "";
             String archivo = "login_intentos.csv";
 
-            String fecha = DateTime.Now.ToString("d/M/yyyy");
+            String fecha = DateTime.Now.ToString("dd/MM/yyyy");
 
             linea = legajo + ";" + fecha;
 
