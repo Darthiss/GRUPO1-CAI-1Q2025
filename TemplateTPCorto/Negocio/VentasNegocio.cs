@@ -43,6 +43,15 @@ namespace Negocio
 
             return categoriaProductos;
         }
+        public List<Producto> obtenerProductosPorCategoria(string categoria)
+        {
+            List<Producto> productos = new List<Producto>();
 
+            ProductoPersistencia productoPersistencia = new ProductoPersistencia();
+
+            productos = productoPersistencia.obtenerProductosPorCategoria(categoria);
+
+            return productos;
+        }
     }
 }

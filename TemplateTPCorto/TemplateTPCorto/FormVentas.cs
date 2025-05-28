@@ -62,7 +62,15 @@ namespace TemplateTPCorto
         private void btnListarProductos_Click(object sender, EventArgs e)
         {
             VentasNegocio ventasNegocio = new VentasNegocio();
+            CategoriaProductos categoria = cboCategoriaProductos.SelectedItem as CategoriaProductos;
 
+            List<Producto> Productos = ventasNegocio.obtenerProductosPorCategoria();
+
+
+        }
+
+        private void cboCategoriaProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

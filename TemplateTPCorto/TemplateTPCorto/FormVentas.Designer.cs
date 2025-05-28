@@ -80,6 +80,7 @@
             this.cboCategoriaProductos.Name = "cboCategoriaProductos";
             this.cboCategoriaProductos.Size = new System.Drawing.Size(121, 24);
             this.cboCategoriaProductos.TabIndex = 3;
+            this.cboCategoriaProductos.SelectedIndexChanged += new System.EventHandler(this.cboCategoriaProductos_SelectedIndexChanged);
             // 
             // lstProducto
             // 
