@@ -54,6 +54,8 @@ namespace TemplateTPCorto
                 if (perfil == "1")
                 { 
                     this.Hide();
+                    FormVentas formVentas = new FormVentas();
+                    formVentas.ShowDialog();
                     // aca va a ir la Fase 2 
                 }
                 if (perfil == "2")
