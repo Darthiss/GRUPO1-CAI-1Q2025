@@ -149,6 +149,7 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(100, 22);
             this.txtCantidad.TabIndex = 11;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
             // btnAgregar
             // 
@@ -158,6 +159,7 @@
             this.btnAgregar.TabIndex = 12;
             this.btnAgregar.Text = "Agregar a carrito";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // lablSubTotal
             // 

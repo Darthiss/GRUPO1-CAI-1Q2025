@@ -47,8 +47,10 @@
     <Compile Include="OperacionCambioCredencial.cs" />
     <Compile Include="OperacionCambioPersona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ventas\Carrito.cs" />
     <Compile Include="Ventas\CategoriaProductos.cs" />
     <Compile Include="Ventas\Cliente.cs" />
+    <Compile Include="Ventas\ItemCarrito.cs" />
     <Compile Include="Ventas\Producto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
