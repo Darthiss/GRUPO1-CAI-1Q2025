@@ -18,5 +18,10 @@ namespace Datos.Ventas
             Cantidad = cantidad;
         }
 
+        public override string ToString()
+        {
+            return $"{Producto.Nombre} - {Cantidad} - ${Subtotal}";
+        }
+
     }
 }

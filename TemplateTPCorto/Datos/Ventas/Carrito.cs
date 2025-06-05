@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,23 +11,32 @@ namespace Datos.Ventas
    public class Carrito
    {
         
-       public List<ItemCarrito> _itemsCarrito = new List<ItemCarrito>();
+       public BindingList<ItemCarrito> _itemsCarrito = new BindingList<ItemCarrito>();
        public decimal _subtotal;
        public decimal _total;
 
-        public List<ItemCarrito> itemsCarrito { get => _itemsCarrito; set => _itemsCarrito = value; }
+        public BindingList<ItemCarrito> itemsCarrito { get => _itemsCarrito; set => _itemsCarrito = value; }
         public decimal subtotal { get => _subtotal; set => _subtotal = value; }
 
         public decimal total { get => _total; set => _total = value; }
 
         public void AgregarProducto(Producto producto, int cantidad)
         {
-            ItemCarrito item = new ItemCarrito(producto,cantidad);
-            itemsCarrito.Add(item);
+            ItemCarrito itemBuscado = itemsCarrito.FirstOrDefault(item => item.Producto.Id == producto.Id);
+            if(itemBuscado == null)
+            {
+                ItemCarrito itemNuevo = new ItemCarrito(producto,cantidad);
+                itemsCarrito.Add(itemNuevo);
+                return;
+            }
+
+            itemBuscado.Cantidad += cantidad;
+
+            
         }
         public void EliminarProducto (Producto producto, int cantidad)
         {
-            ItemCarrito itemBuscado = itemsCarrito.Find(item => item.Producto.Id == producto.Id);
+            ItemCarrito itemBuscado = itemsCarrito.FirstOrDefault(item => item.Producto.Id == producto.Id);
             itemBuscado.Cantidad -= cantidad;
             if(itemBuscado.Cantidad <= 0)
             {

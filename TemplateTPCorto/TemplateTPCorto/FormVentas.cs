@@ -17,9 +17,13 @@ namespace TemplateTPCorto
 {
     public partial class FormVentas : Form
     {
+        private Carrito carrito;
+        
         public FormVentas()
         {
             InitializeComponent();
+            this.carrito = new Carrito();
+            lstCarrito.DataSource = carrito.itemsCarrito;
         }
 
         private void FormVentas_Load(object sender, EventArgs e)
@@ -98,6 +102,13 @@ namespace TemplateTPCorto
             {
                 MessageBox.Show("La cantidad debe ser númerica y positiva");
             }
+
+
+            Producto productoSeleccionado = lstProducto.SelectedItem as Producto;
+
+            carrito.AgregarProducto(productoSeleccionado, cantidad);
+
+            
 
 
 

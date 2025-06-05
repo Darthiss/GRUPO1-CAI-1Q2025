@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cboCategoriaProductos = new System.Windows.Forms.ComboBox();
             this.lstProducto = new System.Windows.Forms.ListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstCarrito = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblSubTotal = new System.Windows.Forms.Label();
@@ -50,71 +50,75 @@
             // cmbClientes
             // 
             this.cmbClientes.FormattingEnabled = true;
-            this.cmbClientes.Location = new System.Drawing.Point(188, 49);
+            this.cmbClientes.Location = new System.Drawing.Point(212, 61);
+            this.cmbClientes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbClientes.Name = "cmbClientes";
-            this.cmbClientes.Size = new System.Drawing.Size(212, 24);
+            this.cmbClientes.Size = new System.Drawing.Size(238, 28);
             this.cmbClientes.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 52);
+            this.label1.Location = new System.Drawing.Point(40, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 16);
+            this.label1.Size = new System.Drawing.Size(66, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Clientes";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(39, 110);
+            this.label2.Location = new System.Drawing.Point(44, 138);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 16);
+            this.label2.Size = new System.Drawing.Size(154, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Categoria Productos";
             // 
             // cboCategoriaProductos
             // 
             this.cboCategoriaProductos.FormattingEnabled = true;
-            this.cboCategoriaProductos.Location = new System.Drawing.Point(188, 101);
+            this.cboCategoriaProductos.Location = new System.Drawing.Point(212, 126);
+            this.cboCategoriaProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboCategoriaProductos.Name = "cboCategoriaProductos";
-            this.cboCategoriaProductos.Size = new System.Drawing.Size(121, 24);
+            this.cboCategoriaProductos.Size = new System.Drawing.Size(136, 28);
             this.cboCategoriaProductos.TabIndex = 3;
             this.cboCategoriaProductos.SelectedIndexChanged += new System.EventHandler(this.cboCategoriaProductos_SelectedIndexChanged);
             // 
             // lstProducto
             // 
             this.lstProducto.FormattingEnabled = true;
-            this.lstProducto.ItemHeight = 16;
-            this.lstProducto.Location = new System.Drawing.Point(39, 161);
+            this.lstProducto.ItemHeight = 20;
+            this.lstProducto.Location = new System.Drawing.Point(44, 201);
+            this.lstProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstProducto.Name = "lstProducto";
-            this.lstProducto.Size = new System.Drawing.Size(451, 260);
+            this.lstProducto.Size = new System.Drawing.Size(507, 324);
             this.lstProducto.TabIndex = 4;
             // 
-            // listBox1
+            // lstCarrito
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(560, 49);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(386, 308);
-            this.listBox1.TabIndex = 5;
+            this.lstCarrito.FormattingEnabled = true;
+            this.lstCarrito.ItemHeight = 20;
+            this.lstCarrito.Location = new System.Drawing.Point(630, 61);
+            this.lstCarrito.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lstCarrito.Name = "lstCarrito";
+            this.lstCarrito.Size = new System.Drawing.Size(434, 384);
+            this.lstCarrito.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(557, 394);
+            this.label3.Location = new System.Drawing.Point(627, 492);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 16);
+            this.label3.Size = new System.Drawing.Size(73, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "SubTotal";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(557, 429);
+            this.label4.Location = new System.Drawing.Point(627, 536);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 16);
+            this.label4.Size = new System.Drawing.Size(44, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "Total";
             // 
@@ -122,40 +126,42 @@
             // 
             this.lblSubTotal.Location = new System.Drawing.Point(0, 0);
             this.lblSubTotal.Name = "lblSubTotal";
-            this.lblSubTotal.Size = new System.Drawing.Size(100, 23);
+            this.lblSubTotal.Size = new System.Drawing.Size(112, 29);
             this.lblSubTotal.TabIndex = 14;
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(684, 429);
+            this.lblTotal.Location = new System.Drawing.Point(770, 536);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(14, 16);
+            this.lblTotal.Size = new System.Drawing.Size(18, 20);
             this.lblTotal.TabIndex = 9;
             this.lblTotal.Text = "0";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(42, 443);
+            this.label5.Location = new System.Drawing.Point(47, 554);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 16);
+            this.label5.Size = new System.Drawing.Size(73, 20);
             this.label5.TabIndex = 10;
             this.label5.Text = "Cantidad";
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(123, 443);
+            this.txtCantidad.Location = new System.Drawing.Point(138, 554);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(100, 22);
+            this.txtCantidad.Size = new System.Drawing.Size(112, 26);
             this.txtCantidad.TabIndex = 11;
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(213, 481);
+            this.btnAgregar.Location = new System.Drawing.Point(240, 601);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(129, 23);
+            this.btnAgregar.Size = new System.Drawing.Size(145, 29);
             this.btnAgregar.TabIndex = 12;
             this.btnAgregar.Text = "Agregar a carrito";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -164,35 +170,38 @@
             // lablSubTotal
             // 
             this.lablSubTotal.AutoSize = true;
-            this.lablSubTotal.Location = new System.Drawing.Point(684, 394);
+            this.lablSubTotal.Location = new System.Drawing.Point(770, 492);
             this.lablSubTotal.Name = "lablSubTotal";
-            this.lablSubTotal.Size = new System.Drawing.Size(14, 16);
+            this.lablSubTotal.Size = new System.Drawing.Size(18, 20);
             this.lablSubTotal.TabIndex = 13;
             this.lablSubTotal.Text = "0";
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(969, 161);
+            this.btnQuitar.Location = new System.Drawing.Point(1090, 201);
+            this.btnQuitar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitar.Size = new System.Drawing.Size(84, 29);
             this.btnQuitar.TabIndex = 15;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
             // 
             // btnCargar
             // 
-            this.btnCargar.Location = new System.Drawing.Point(735, 481);
+            this.btnCargar.Location = new System.Drawing.Point(827, 601);
+            this.btnCargar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(102, 23);
+            this.btnCargar.Size = new System.Drawing.Size(115, 29);
             this.btnCargar.TabIndex = 16;
             this.btnCargar.Text = "Cargar Venta";
             this.btnCargar.UseVisualStyleBackColor = true;
             // 
             // btnListarProductos
             // 
-            this.btnListarProductos.Location = new System.Drawing.Point(349, 101);
+            this.btnListarProductos.Location = new System.Drawing.Point(393, 126);
+            this.btnListarProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnListarProductos.Name = "btnListarProductos";
-            this.btnListarProductos.Size = new System.Drawing.Size(113, 23);
+            this.btnListarProductos.Size = new System.Drawing.Size(127, 29);
             this.btnListarProductos.TabIndex = 17;
             this.btnListarProductos.Text = "Listar productos";
             this.btnListarProductos.UseVisualStyleBackColor = true;
@@ -200,9 +209,9 @@
             // 
             // FormVentas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 531);
+            this.ClientSize = new System.Drawing.Size(1217, 664);
             this.Controls.Add(this.btnListarProductos);
             this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.btnQuitar);
@@ -214,12 +223,13 @@
             this.Controls.Add(this.lblSubTotal);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstCarrito);
             this.Controls.Add(this.lstProducto);
             this.Controls.Add(this.cboCategoriaProductos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbClientes);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormVentas";
             this.Text = "FormVentas";
             this.Load += new System.EventHandler(this.FormVentas_Load);
@@ -235,7 +245,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboCategoriaProductos;
         private System.Windows.Forms.ListBox lstProducto;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstCarrito;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblSubTotal;
