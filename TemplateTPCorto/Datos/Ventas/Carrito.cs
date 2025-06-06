@@ -43,7 +43,17 @@ namespace Datos.Ventas
                 itemsCarrito.Remove(itemBuscado);
             }
         }
+        public void CalcularSubtotales()
+        {
+            decimal subtotal = 0;
+            foreach (ItemCarrito item in itemsCarrito)
+            {
+                subtotal += item.Subtotal;
+            }
+            this.subtotal = subtotal;  
+          
+        }
 
-   }
+    }
    
 }

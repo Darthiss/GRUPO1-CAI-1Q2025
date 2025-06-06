@@ -97,10 +97,17 @@ namespace TemplateTPCorto
             if (lstProducto.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un producto");
+                return;
             }
-            if(!int.TryParse(txtCantidad.Text, out int cantidad) || cantidad < 0)
+            if(string.IsNullOrEmpty(txtCantidad.Text))
+            {
+                MessageBox.Show("Debe ingresar una cantidad");
+                return;
+            }
+            if (!int.TryParse(txtCantidad.Text, out int cantidad) || cantidad < 0)
             {
                 MessageBox.Show("La cantidad debe ser númerica y positiva");
+                return;
             }
 
 
@@ -108,7 +115,9 @@ namespace TemplateTPCorto
 
             carrito.AgregarProducto(productoSeleccionado, cantidad);
 
-            
+            carrito.CalcularSubtotales();
+
+            lblSubTotal.Text = carrito.subtotal.ToString("C");
 
 
 
