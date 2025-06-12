@@ -38,11 +38,22 @@ namespace Datos.Ventas
         {
             ItemCarrito itemBuscado = itemsCarrito.FirstOrDefault(item => item.Producto.Id == producto.Id);
             itemBuscado.Cantidad -= cantidad;
-            if(itemBuscado.Cantidad <= 0)
+
+            if (itemBuscado.Cantidad <= 0)
+            {
+                RemoverProducto(producto);
+            }
+        }
+
+        public void RemoverProducto(Producto producto)
+        {
+            ItemCarrito itemBuscado = itemsCarrito.FirstOrDefault(item => item.Producto.Id == producto.Id);
+            if (itemBuscado != null)
             {
                 itemsCarrito.Remove(itemBuscado);
             }
         }
+
         public void CalcularSubtotales()
         {
             decimal subtotal = 0;

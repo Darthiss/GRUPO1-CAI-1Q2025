@@ -18,12 +18,14 @@ namespace TemplateTPCorto
     public partial class FormVentas : Form
     {
         private Carrito carrito;
-        
+
         public FormVentas()
         {
             InitializeComponent();
             this.carrito = new Carrito();
-            lstCarrito.DataSource = carrito.itemsCarrito;
+            CargarCarrito();
+            dgvCarrito.DataSource = carrito.itemsCarrito;
+
         }
 
         private void FormVentas_Load(object sender, EventArgs e)
@@ -67,6 +69,13 @@ namespace TemplateTPCorto
 
         private void btnListarProductos_Click(object sender, EventArgs e)
         {
+
+            if(cboCategoriaProductos.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar una categoría de productos");
+                return;
+            }
+
             VentasNegocio ventasNegocio = new VentasNegocio();
             CategoriaProductos categoria = cboCategoriaProductos.SelectedItem as CategoriaProductos;
 
@@ -79,12 +88,12 @@ namespace TemplateTPCorto
         {
 
         }
-        public List <Producto> FiltrarProducto(List<Producto> Productos)
+        public List<Producto> FiltrarProducto(List<Producto> Productos)
         {
-            List<Producto> ProductosFiltrados = new List<Producto>(); 
+            List<Producto> ProductosFiltrados = new List<Producto>();
             foreach (Producto producto in Productos)
             {
-                if(producto.Stock > 0 && producto.FechaBaja == null)
+                if (producto.Stock > 0 && producto.FechaBaja == null)
                 {
                     ProductosFiltrados.Add(producto);
                 }
@@ -99,7 +108,7 @@ namespace TemplateTPCorto
                 MessageBox.Show("Debe seleccionar un producto");
                 return;
             }
-            if(string.IsNullOrEmpty(txtCantidad.Text))
+            if (string.IsNullOrEmpty(txtCantidad.Text))
             {
                 MessageBox.Show("Debe ingresar una cantidad");
                 return;
@@ -115,11 +124,9 @@ namespace TemplateTPCorto
 
             carrito.AgregarProducto(productoSeleccionado, cantidad);
 
+            dgvCarrito.Refresh();
             carrito.CalcularSubtotales();
-
-            lblSubTotal.Text = carrito.subtotal.ToString("C");
-
-
+            
 
         }
 
@@ -127,5 +134,87 @@ namespace TemplateTPCorto
         {
 
         }
+
+        private void dgvCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (dgvCarrito.Columns[e.ColumnIndex].Name == "Incremento")
+            {
+
+                ItemCarrito itemSeleccionado = dgvCarrito.Rows[e.RowIndex].DataBoundItem as ItemCarrito;
+                carrito.AgregarProducto(itemSeleccionado.Producto, 1);
+                dgvCarrito.Refresh();
+
+            }
+
+            if (dgvCarrito.Columns[e.ColumnIndex].Name == "Decremento")
+            {
+                ItemCarrito itemSeleccionado = dgvCarrito.Rows[e.RowIndex].DataBoundItem as ItemCarrito;
+                carrito.EliminarProducto(itemSeleccionado.Producto, 1);
+                dgvCarrito.Refresh();
+            }
+
+            if (dgvCarrito.Columns[e.ColumnIndex].Name == "Quitar")
+            {
+                ItemCarrito itemSeleccionado = dgvCarrito.Rows[e.RowIndex].DataBoundItem as ItemCarrito;
+                carrito.RemoverProducto(itemSeleccionado.Producto);
+                dgvCarrito.Refresh();
+            }
+        }
+
+        public void CargarCarrito()
+        {
+            dgvCarrito.AutoGenerateColumns = false;
+            dgvCarrito.Columns.Clear();
+
+            dgvCarrito.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Producto",
+                DataPropertyName = "Producto", // llama a ToString() del Producto
+                ReadOnly = true
+            });
+
+            dgvCarrito.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Cantidad",
+                DataPropertyName = "Cantidad",
+                ReadOnly = true
+            });
+
+            dgvCarrito.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Subtotal",
+                DataPropertyName = "Subtotal",
+                ReadOnly = true
+            });
+
+            dgvCarrito.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "Incremento",
+                HeaderText = "Incremento",
+                Text = "+1",
+                UseColumnTextForButtonValue = true
+            });
+
+            dgvCarrito.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "Decremento",
+                HeaderText = "Decremento",
+                Text = "-1",
+                UseColumnTextForButtonValue = true
+            });
+
+            dgvCarrito.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "Quitar",
+                HeaderText = "Quitar",
+                Text = "Quitar",
+                UseColumnTextForButtonValue = true
+            });
+
+            dgvCarrito.DataSource = carrito.itemsCarrito;
+        }
     }
+
 }
+
