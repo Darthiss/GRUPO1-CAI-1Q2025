@@ -26,7 +26,7 @@ namespace Datos.Ventas
 
         public override string ToString()
         {
-            return $"{Nombre} - ${Precio}";
+            return $"{Nombre}";
         }
     }
     

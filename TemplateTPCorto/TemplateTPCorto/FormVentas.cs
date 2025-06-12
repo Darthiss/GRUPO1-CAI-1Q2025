@@ -125,8 +125,7 @@ namespace TemplateTPCorto
             carrito.AgregarProducto(productoSeleccionado, cantidad);
 
             dgvCarrito.Refresh();
-            carrito.CalcularSubtotales();
-            
+            ActualizarTotales();
 
         }
 
@@ -144,6 +143,7 @@ namespace TemplateTPCorto
                 ItemCarrito itemSeleccionado = dgvCarrito.Rows[e.RowIndex].DataBoundItem as ItemCarrito;
                 carrito.AgregarProducto(itemSeleccionado.Producto, 1);
                 dgvCarrito.Refresh();
+                ActualizarTotales();
 
             }
 
@@ -152,6 +152,7 @@ namespace TemplateTPCorto
                 ItemCarrito itemSeleccionado = dgvCarrito.Rows[e.RowIndex].DataBoundItem as ItemCarrito;
                 carrito.EliminarProducto(itemSeleccionado.Producto, 1);
                 dgvCarrito.Refresh();
+                ActualizarTotales();
             }
 
             if (dgvCarrito.Columns[e.ColumnIndex].Name == "Quitar")
@@ -159,6 +160,7 @@ namespace TemplateTPCorto
                 ItemCarrito itemSeleccionado = dgvCarrito.Rows[e.RowIndex].DataBoundItem as ItemCarrito;
                 carrito.RemoverProducto(itemSeleccionado.Producto);
                 dgvCarrito.Refresh();
+                ActualizarTotales();
             }
         }
 
@@ -185,6 +187,7 @@ namespace TemplateTPCorto
             {
                 HeaderText = "Subtotal",
                 DataPropertyName = "Subtotal",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C" },
                 ReadOnly = true
             });
 
@@ -213,6 +216,13 @@ namespace TemplateTPCorto
             });
 
             dgvCarrito.DataSource = carrito.itemsCarrito;
+        }
+
+        public void ActualizarTotales()
+        {
+            carrito.CalcularSubtotales();
+            lablSubTotal.Text = carrito.subtotal.ToString("C");
+            lblTotal.Text = carrito.total.ToString("C");
         }
     }
 

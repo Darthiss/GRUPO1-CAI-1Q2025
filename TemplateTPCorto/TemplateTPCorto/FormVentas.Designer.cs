@@ -97,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 476);
+            this.label3.Location = new System.Drawing.Point(31, 472);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 13);
@@ -107,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 504);
+            this.label4.Location = new System.Drawing.Point(31, 500);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
@@ -117,7 +117,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(126, 504);
+            this.lblTotal.Location = new System.Drawing.Point(126, 500);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(13, 13);
@@ -157,7 +157,7 @@
             // lablSubTotal
             // 
             this.lablSubTotal.AutoSize = true;
-            this.lablSubTotal.Location = new System.Drawing.Point(126, 476);
+            this.lablSubTotal.Location = new System.Drawing.Point(126, 472);
             this.lablSubTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lablSubTotal.Name = "lablSubTotal";
             this.lablSubTotal.Size = new System.Drawing.Size(13, 13);
