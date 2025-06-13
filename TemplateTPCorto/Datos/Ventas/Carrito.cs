@@ -64,7 +64,24 @@ namespace Datos.Ventas
             this.subtotal = subtotal;  
           
         }
-
+        public void CalcularTotal()
+        {
+            decimal total = 0;
+            foreach(ItemCarrito item in itemsCarrito)
+            {
+                total += item.Subtotal;
+            }  
+            this.total = total;
+            AplicarDescuento();
+        }
+        public void AplicarDescuento()
+        {
+            if(this.total > 1000000)
+            {
+                decimal montoDescuento = this.subtotal * 0.15m;
+                this.total -= montoDescuento;
+            }
+        }
     }
    
 }

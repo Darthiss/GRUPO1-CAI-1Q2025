@@ -33,14 +33,9 @@ namespace TemplateTPCorto
 
             CargarClientes();
             CargarCategoriasProductos();
-            IniciarTotales();
         }
 
-        private void IniciarTotales()
-        {
-            lablSubTotal.Text = "0.00";
-            lblTotal.Text = "0.00";
-        }
+        
 
         private void CargarCategoriasProductos()
         {
@@ -221,8 +216,16 @@ namespace TemplateTPCorto
         public void ActualizarTotales()
         {
             carrito.CalcularSubtotales();
+            carrito.CalcularTotal();
             lablSubTotal.Text = carrito.subtotal.ToString("C");
+            lblDescuento.Text = ((carrito.subtotal - carrito.total)* -1).ToString("C");
             lblTotal.Text = carrito.total.ToString("C");
+           
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
