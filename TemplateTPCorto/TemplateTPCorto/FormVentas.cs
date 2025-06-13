@@ -212,7 +212,6 @@ namespace TemplateTPCorto
 
             dgvCarrito.DataSource = carrito.itemsCarrito;
         }
-
         public void ActualizarTotales()
         {
             carrito.CalcularSubtotales();
@@ -226,6 +225,12 @@ namespace TemplateTPCorto
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            VentasNegocio ventasNegocio = new VentasNegocio();
+            ventasNegocio.CargarVenta(idcliente, carrito);
         }
     }
 

@@ -53,5 +53,10 @@ namespace Negocio
 
             return productos;
         }
+        public void CargarVenta(Guid idcliente, Carrito carrito)
+        {
+            VentaPersistencia ventaPersistencia = new VentaPersistencia();
+            ventaPersistencia.CargarVenta(idcliente,carrito);
+        }
     }
 }

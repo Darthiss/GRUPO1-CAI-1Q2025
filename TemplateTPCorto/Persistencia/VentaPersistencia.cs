@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Datos.Ventas;
+using Newtonsoft.Json;
 using Persistencia.WebService.Utils;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,10 @@ namespace Persistencia
     {
         private Guid idUsuario = new Guid("784c07f2-2b26-4973-9235-4064e94832b5");
 
-        /*
-        public bool agregarVenta(venta)
+       
+        public bool CargarVenta(Guid idcliente, Carrito carrito)
         {
+
             var jsonRequest = JsonConvert.SerializeObject(venta);
 
             HttpResponseMessage response = WebHelper.Post("Venta/AgregarVenta", jsonRequest);
@@ -27,7 +29,7 @@ namespace Persistencia
 
             return false;
         }
-        */
+        
       
     }
     
