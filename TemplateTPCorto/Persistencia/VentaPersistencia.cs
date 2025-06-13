@@ -17,17 +17,29 @@ namespace Persistencia
        
         public bool CargarVenta(Guid idcliente, Carrito carrito)
         {
-
-            var jsonRequest = JsonConvert.SerializeObject(venta);
-
-            HttpResponseMessage response = WebHelper.Post("Venta/AgregarVenta", jsonRequest);
-
-            if (response.IsSuccessStatusCode)
+                       
+            foreach (ItemCarrito item in carrito.itemsCarrito)
             {
-                return true;
+              
+                VentaRequest venta = new VentaRequest
+                {
+                    IdCliente = idcliente,
+                    IdProducto = item.Producto.Id,
+                    Cantidad = item.Cantidad,
+                    IdUsuario = idUsuario
+                };
+                var jsonRequest = JsonConvert.SerializeObject(venta);
+
+                HttpResponseMessage response = WebHelper.Post("Venta/AgregarVenta", jsonRequest);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return false;
+                }
+                
             }
 
-            return false;
+            return true;
         }
         
       

@@ -229,8 +229,33 @@ namespace TemplateTPCorto
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
+            if (cmbClientes.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar un cliente");
+                return;
+            }
+            if (carrito.itemsCarrito.Count == 0)
+            {
+                MessageBox.Show("Debe agregar productos al carrito");
+                return;
+            }
+            Cliente clienteSeleccionado = cmbClientes.SelectedItem as Cliente;
             VentasNegocio ventasNegocio = new VentasNegocio();
-            ventasNegocio.CargarVenta(idcliente, carrito);
+            bool respuesta = ventasNegocio.CargarVenta(clienteSeleccionado.Id, carrito);
+
+            if (respuesta == true)
+            {
+                MessageBox.Show("Venta cargada correctamente");
+                carrito = new Carrito();
+                CargarCarrito();
+                dgvCarrito.DataSource = carrito.itemsCarrito;
+                ActualizarTotales();
+            }
+            else
+            {
+                MessageBox.Show("Error al cargar la venta");
+
+            }
         }
     }
 
