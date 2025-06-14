@@ -272,6 +272,7 @@ namespace TemplateTPCorto
                 CargarCarrito();
                 dgvCarrito.DataSource = carrito.itemsCarrito;
                 ActualizarTotales();
+                btnListarProductos_Click(null,null);
             }
             else
             {

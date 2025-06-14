@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -244,7 +244,7 @@
             this.Precio,
             this.Stock});
             this.dgvProductos.Location = new System.Drawing.Point(12, 18);
-            this.dgvProductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvProductos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProductos.MultiSelect = false;
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
@@ -267,9 +267,9 @@
             // Precio
             // 
             this.Precio.DataPropertyName = "Precio";
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle2;
             this.Precio.HeaderText = "Precio";
             this.Precio.MinimumWidth = 8;
             this.Precio.Name = "Precio";
@@ -309,9 +309,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TemplateTPCorto.Properties.Resources.retail;
-            this.pictureBox1.Location = new System.Drawing.Point(1082, 17);
+            this.pictureBox1.Location = new System.Drawing.Point(1093, 17);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(148, 69);
+            this.pictureBox1.Size = new System.Drawing.Size(137, 69);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 25;
             this.pictureBox1.TabStop = false;
