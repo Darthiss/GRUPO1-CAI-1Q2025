@@ -74,9 +74,9 @@ namespace TemplateTPCorto
             VentasNegocio ventasNegocio = new VentasNegocio();
             CategoriaProductos categoria = cboCategoriaProductos.SelectedItem as CategoriaProductos;
 
-            List<Producto> Productos = ventasNegocio.obtenerProductosPorCategoria(categoria.Id);
-            Productos = FiltrarProducto(Productos);
-            lstProducto.DataSource = Productos;
+            List<Producto> productos = ventasNegocio.obtenerProductosPorCategoria(categoria.Id);
+            productos = FiltrarProducto(productos);
+            dgvProductos.DataSource = productos;
         }
 
         private void cboCategoriaProductos_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,7 +98,7 @@ namespace TemplateTPCorto
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (lstProducto.SelectedIndex == -1)
+            if (dgvProductos.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar un producto");
                 return;
@@ -115,9 +115,22 @@ namespace TemplateTPCorto
             }
 
 
-            Producto productoSeleccionado = lstProducto.SelectedItem as Producto;
+            Producto productoSeleccionado = dgvProductos.SelectedRows[0].DataBoundItem as Producto;
 
-            carrito.AgregarProducto(productoSeleccionado, cantidad);
+            if (cantidad > productoSeleccionado.Stock)
+            {
+                MessageBox.Show("No hay stock suficiente");
+                return;
+            }
+
+            bool respuesta = carrito.AgregarProducto(productoSeleccionado, cantidad);
+
+            if (respuesta == false)
+            {
+                MessageBox.Show("No hay stock suficiente");
+                return;
+
+            }
 
             dgvCarrito.Refresh();
             ActualizarTotales();
@@ -136,7 +149,15 @@ namespace TemplateTPCorto
             {
 
                 ItemCarrito itemSeleccionado = dgvCarrito.Rows[e.RowIndex].DataBoundItem as ItemCarrito;
-                carrito.AgregarProducto(itemSeleccionado.Producto, 1);
+                bool respuesta = carrito.AgregarProducto(itemSeleccionado.Producto, 1);
+
+                if (respuesta == false)
+                {
+                    MessageBox.Show("No hay stock suficiente");
+                    return;
+
+                }
+                
                 dgvCarrito.Refresh();
                 ActualizarTotales();
 
@@ -257,6 +278,9 @@ namespace TemplateTPCorto
 
             }
         }
+
+       
+
     }
 
 }

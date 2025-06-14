@@ -10,11 +10,11 @@ namespace Persistencia.DataBase
     public class DataBaseUtils
     {
 
-        //private readonly string rutaBase = @"C:\Users\Delfi\OneDrive\Documents\TPCAI1\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas\";
+        private readonly string rutaBase = @"C:\Users\Delfi\OneDrive\Documents\TPCAI1\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas\";
         //private readonly string rutaBase = @"C:\Users\rochi\OneDrive - Económicas - UBA\econ\1C2025\CAI\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas\";
 
         //private readonly string rutaBase = @"C:\Users\pilar\OneDrive\Documentos\GitHub\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas";
-        private readonly string rutaBase = @"C:\Users\lucas\OneDrive\1_Learning\Facultad\2025\CAI\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas"; // PONER RUTA DE LA PC DEL PROFESOR
+       // private readonly string rutaBase = @"C:\Users\lucas\OneDrive\1_Learning\Facultad\2025\CAI\GRUPO1-CAI-1Q2025\TemplateTPCorto\Persistencia\DataBase\Tablas"; // PONER RUTA DE LA PC DEL PROFESOR
 
         //Devuelve TODOS los registros de una tabla...
         public List<String> BuscarRegistro(String nombreArchivo)

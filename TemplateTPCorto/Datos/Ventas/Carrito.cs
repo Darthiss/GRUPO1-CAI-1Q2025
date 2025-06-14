@@ -20,20 +20,35 @@ namespace Datos.Ventas
 
         public decimal total { get => _total; set => _total = value; }
 
-        public void AgregarProducto(Producto producto, int cantidad)
+ 
+        public ItemCarrito BuscarItem (Producto producto)
         {
-            ItemCarrito itemBuscado = itemsCarrito.FirstOrDefault(item => item.Producto.Id == producto.Id);
-            if(itemBuscado == null)
-            {
-                ItemCarrito itemNuevo = new ItemCarrito(producto,cantidad);
-                itemsCarrito.Add(itemNuevo);
-                return;
-            }
-
-            itemBuscado.Cantidad += cantidad;
-
-            
+            return itemsCarrito.FirstOrDefault(item => item.Producto.Id == producto.Id);
         }
+
+        private bool HayStockDisponible(Producto producto, int cantidadAAgregar)
+        {
+            ItemCarrito item = BuscarItem(producto);
+            int cantidadEnCarrito = item?.Cantidad ?? 0;
+
+            return (cantidadEnCarrito + cantidadAAgregar <= producto.Stock);
+        }
+
+        public bool AgregarProducto(Producto producto, int cantidad)
+        {
+            if (!HayStockDisponible(producto, cantidad))
+                return false;
+
+            ItemCarrito item = BuscarItem(producto);
+
+            if (item == null)
+                itemsCarrito.Add(new ItemCarrito(producto, cantidad));
+            else
+                item.Cantidad += cantidad;
+
+            return true;
+        }
+
         public void EliminarProducto (Producto producto, int cantidad)
         {
             ItemCarrito itemBuscado = itemsCarrito.FirstOrDefault(item => item.Producto.Id == producto.Id);
