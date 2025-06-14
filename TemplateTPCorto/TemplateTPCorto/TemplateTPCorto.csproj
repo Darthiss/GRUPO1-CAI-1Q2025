@@ -135,9 +135,9 @@
     <Content Include="Images\logofce.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Images\retail.png" />
-    <None Include="Images\tienda.png" />
-    <None Include="Images\logoShopStore.png" />
+    <Content Include="Images\retail.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
