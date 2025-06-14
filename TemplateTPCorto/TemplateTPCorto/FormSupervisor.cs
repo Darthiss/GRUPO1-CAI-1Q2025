@@ -147,10 +147,10 @@ namespace TemplateTPCorto
             string contraseña = txtContraseña.Text;
             string idPerfil = txtIDperfil.Text;
             string fechaDeAlta = txtFAlta.Text;
-            string fechaUiltimoLogin = txtFUltimoLogin.Text;
+            string fechaUltimoLogin = txtFUltimoLogin.Text;
 
 
-            if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contraseña) || string.IsNullOrEmpty(idPerfil) || string.IsNullOrEmpty(fechaDeAlta) || string.IsNullOrEmpty(fechaUiltimoLogin))
+            if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contraseña) || string.IsNullOrEmpty(idPerfil) || string.IsNullOrEmpty(fechaDeAlta) || string.IsNullOrEmpty(fechaUltimoLogin))
             {
                 MessageBox.Show("Debe completar todos los campos de la credencial.");
                 return;
@@ -168,7 +168,7 @@ namespace TemplateTPCorto
             }
 
             DateTime SalidaFechaUltimoLogin;
-            if (!ValidarFechaIngreso(fechaUiltimoLogin, out SalidaFechaUltimoLogin))
+            if (!ValidarFechaIngreso(fechaUltimoLogin, out SalidaFechaUltimoLogin))
             {
                 return;
             }
