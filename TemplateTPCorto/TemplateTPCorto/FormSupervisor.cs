@@ -155,7 +155,12 @@ namespace TemplateTPCorto
                 MessageBox.Show("Debe completar todos los campos de la credencial.");
                 return;
             }
-            
+            if (contraseña.Length < 8)
+            {
+                MessageBox.Show("La contraseña debe tener 8 caracteres.");
+                return;
+            }
+
             DateTime SalidaFechaAlta;
             if (!ValidarFechaIngreso(fechaDeAlta, out SalidaFechaAlta))
             {
