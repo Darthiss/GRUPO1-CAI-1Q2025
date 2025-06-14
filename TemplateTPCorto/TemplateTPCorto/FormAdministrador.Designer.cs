@@ -106,7 +106,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(33, 31);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(202, 23);
+            this.button1.Size = new System.Drawing.Size(198, 41);
             this.button1.TabIndex = 1;
             this.button1.Text = "Cargar Solicitudes Pendientes";
             this.button1.UseVisualStyleBackColor = true;
@@ -114,10 +114,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::TemplateTPCorto.Properties.Resources.logofce;
-            this.pictureBox1.Location = new System.Drawing.Point(801, 12);
+            this.pictureBox1.Image = global::TemplateTPCorto.Properties.Resources.retail;
+            this.pictureBox1.Location = new System.Drawing.Point(740, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(60, 60);
+            this.pictureBox1.Size = new System.Drawing.Size(121, 60);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;

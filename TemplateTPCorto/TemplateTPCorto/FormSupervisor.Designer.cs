@@ -61,10 +61,10 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(194, 41);
+            this.btnBuscar.Location = new System.Drawing.Point(171, 46);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(56, 19);
+            this.btnBuscar.Size = new System.Drawing.Size(78, 31);
             this.btnBuscar.TabIndex = 0;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -72,16 +72,17 @@
             // 
             // txtLegajo
             // 
-            this.txtLegajo.Location = new System.Drawing.Point(106, 42);
+            this.txtLegajo.Location = new System.Drawing.Point(74, 52);
             this.txtLegajo.Margin = new System.Windows.Forms.Padding(2);
             this.txtLegajo.Name = "txtLegajo";
             this.txtLegajo.Size = new System.Drawing.Size(76, 20);
             this.txtLegajo.TabIndex = 1;
+            this.txtLegajo.TextChanged += new System.EventHandler(this.txtLegajo_TextChanged);
             // 
             // Legajo
             // 
             this.Legajo.AutoSize = true;
-            this.Legajo.Location = new System.Drawing.Point(52, 45);
+            this.Legajo.Location = new System.Drawing.Point(71, 32);
             this.Legajo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Legajo.Name = "Legajo";
             this.Legajo.Size = new System.Drawing.Size(39, 13);
@@ -262,7 +263,7 @@
             this.btnModificarPersona.Location = new System.Drawing.Point(34, 200);
             this.btnModificarPersona.Margin = new System.Windows.Forms.Padding(2);
             this.btnModificarPersona.Name = "btnModificarPersona";
-            this.btnModificarPersona.Size = new System.Drawing.Size(117, 19);
+            this.btnModificarPersona.Size = new System.Drawing.Size(117, 32);
             this.btnModificarPersona.TabIndex = 23;
             this.btnModificarPersona.Text = "Modificar Persona";
             this.btnModificarPersona.UseVisualStyleBackColor = true;
@@ -273,7 +274,7 @@
             this.btnDesbloquearCredencial.Location = new System.Drawing.Point(72, 200);
             this.btnDesbloquearCredencial.Margin = new System.Windows.Forms.Padding(2);
             this.btnDesbloquearCredencial.Name = "btnDesbloquearCredencial";
-            this.btnDesbloquearCredencial.Size = new System.Drawing.Size(151, 19);
+            this.btnDesbloquearCredencial.Size = new System.Drawing.Size(151, 32);
             this.btnDesbloquearCredencial.TabIndex = 24;
             this.btnDesbloquearCredencial.Text = "Desbloquear Credencial";
             this.btnDesbloquearCredencial.UseVisualStyleBackColor = true;

@@ -75,7 +75,8 @@ namespace TemplateTPCorto
             CategoriaProductos categoria = cboCategoriaProductos.SelectedItem as CategoriaProductos;
 
             List<Producto> productos = ventasNegocio.obtenerProductosPorCategoria(categoria.Id);
-            productos = FiltrarProducto(productos);
+            productos = FiltrarProductos(productos);
+            dgvProductos.AutoGenerateColumns = false;
             dgvProductos.DataSource = productos;
         }
 
@@ -83,7 +84,7 @@ namespace TemplateTPCorto
         {
 
         }
-        public List<Producto> FiltrarProducto(List<Producto> Productos)
+        public List<Producto> FiltrarProductos(List<Producto> Productos)
         {
             List<Producto> ProductosFiltrados = new List<Producto>();
             foreach (Producto producto in Productos)
@@ -188,7 +189,7 @@ namespace TemplateTPCorto
             dgvCarrito.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Producto",
-                DataPropertyName = "Producto", // llama a ToString() del Producto
+                DataPropertyName = "Producto", 
                 ReadOnly = true
             });
 
@@ -279,8 +280,20 @@ namespace TemplateTPCorto
             }
         }
 
-       
+        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

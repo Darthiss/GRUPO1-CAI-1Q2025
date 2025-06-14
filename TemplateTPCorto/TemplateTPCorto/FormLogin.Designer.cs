@@ -76,10 +76,10 @@
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(57, 198);
+            this.btnIngresar.Location = new System.Drawing.Point(57, 184);
             this.btnIngresar.Margin = new System.Windows.Forms.Padding(2);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(243, 19);
+            this.btnIngresar.Size = new System.Drawing.Size(243, 45);
             this.btnIngresar.TabIndex = 4;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
@@ -87,10 +87,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::TemplateTPCorto.Properties.Resources.logofce;
-            this.pictureBox1.Location = new System.Drawing.Point(285, 12);
+            this.pictureBox1.Image = global::TemplateTPCorto.Properties.Resources.retail;
+            this.pictureBox1.Location = new System.Drawing.Point(233, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(60, 60);
+            this.pictureBox1.Size = new System.Drawing.Size(115, 60);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 254);
+            this.ClientSize = new System.Drawing.Size(360, 252);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.label2);

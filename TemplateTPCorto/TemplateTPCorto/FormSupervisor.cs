@@ -172,5 +172,10 @@ namespace TemplateTPCorto
 
             MessageBox.Show("Solicitud de modificación de Credencial enviada.");
         }
+
+        private void txtLegajo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
